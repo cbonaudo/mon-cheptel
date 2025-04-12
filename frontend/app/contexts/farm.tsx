@@ -1,47 +1,33 @@
 import React, { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
-
-type FarmState = {
-  id: string | null;
-  birthdate: string;
-  birthplace: string;
-  gender: string;
-}
+import { animalDetailsSample, animalListSample } from "~/samples/farm";
+import type { Animal, AnimalDetails } from "~/types/farm";
 
 interface FarmContextType {
-  state: FarmState;
-  updateState: (key: keyof FarmState, value: string) => void;
+  currentAnimal: AnimalDetails | null;
+  list: Animal[]
+  // addAnimal: (key: keyof AnimalDetails, value: string) => void;
 }
 
 const defaultFarmContext: FarmContextType = {
-  state: {
-    id: null,
-    birthdate: "",
-    birthplace: "",
-    gender: "",    
-  },
-    updateState: () => {},
+  currentAnimal: null,
+  list: [],
+  // addAnimal: () => {},
 };
 
 const FarmContext = createContext<FarmContextType>(defaultFarmContext);
 
 export function FarmProvider ({ children }: { children: ReactNode })  {
-  const [state, setState] = useState<FarmState>({
-    id: null,
-    birthdate: "",
-    birthplace: "",
-    gender: "",
-  });
+  const [list, setList] = useState<Animal[]>(animalListSample);
 
-  const updateState = (key: keyof FarmState, value: string) => {
-    setState((prevState) => ({
-      ...prevState,
-      [key]: value,
-    }));
-  };
+  const [currentAnimal, setCurrentAnimal] = useState<AnimalDetails | null>(animalDetailsSample);
+
+  // const addAnimal = (form: AnimalForm) => {
+  //   setList((list) => ([...list]));
+  // };
 
   return (
-    <FarmContext.Provider value={{ state, updateState }}>
+    <FarmContext.Provider value={{ currentAnimal, list }}>
       {children}
     </FarmContext.Provider>
   );
