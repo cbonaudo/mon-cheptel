@@ -16,7 +16,8 @@ export enum ReproductionStatus {
 
 export enum ReproductionType {
   "IA",
-  "Naturelle"
+  "Monte Naturelle",
+  "Transfert d'embryon"
 }
 
 export enum GestationResults {
@@ -66,12 +67,9 @@ export type Reproduction = {
     type: ReproductionType,
     genitorName: string,
     genitorPentagNumber: string,
-    origin: string,
     IANumber: number,
     IAObservations: string,
-    gestationControls: GestationControl[
-        
-    ],
+    gestationControls: GestationControl[],
     postCalvingReproductionCycle: {
         rebreedingDate: Date,
         rebreedingIntensity: string,

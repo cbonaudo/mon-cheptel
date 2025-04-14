@@ -11,19 +11,19 @@ const Animals: React.FC = () => {
           <div>
             <h1>Animal</h1>
             <p>
-              Pentag Number: {animal.pentagNumber}
+              N° de Boucle: {animal.pentagNumber}
             </p>
             <p>
-              Gender: {animal.gender}
+              Sexe: {animal.gender}
             </p>
             <p>
               Age: {animal.age}
             </p>
             <p>
-              Father Pentag Number: {animal.fatherPentagNumber}
+              Père: {animal.fatherPentagNumber}
             </p>
             <p>
-              Mother Pentag Number: {animal.motherPentagNumber}
+              Mère: {animal.motherPentagNumber}
             </p>
           </div>)
         }

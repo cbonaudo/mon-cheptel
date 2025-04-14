@@ -37,6 +37,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <p>Routes</p>
         <NavLink to="/" end>Tableau de Bord</NavLink>
         <NavLink to="/create-animal" end>Créer</NavLink>
+        <NavLink to="/filters" end>Filtres</NavLink>
         <NavLink to="/animals" end>Mes animaux</NavLink>
         <NavLink to="/animal" end>Animal</NavLink>
         {children}
