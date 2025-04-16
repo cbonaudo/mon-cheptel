@@ -2,14 +2,15 @@
 import React from "react";
 import { useFarmContext } from "../contexts/farm";
 import type { Animal } from "~/types/farm";
+import { NavLink } from "react-router";
 
-const Animals: React.FC = () => {
+const FarmAnimals: React.FC = () => {
   const { list } = useFarmContext();
   return (
     <div>{
         list.map((animal: Animal) => 
-          <div>
-            <h1>Animal</h1>
+          <div key={animal.id}>
+            <NavLink to="/farm/animal" end>Animal</NavLink>
             <p>
               N° de Boucle: {animal.pentagNumber}
             </p>
@@ -31,4 +32,4 @@ const Animals: React.FC = () => {
   );
 };
 
-export default Animals;
+export default FarmAnimals;

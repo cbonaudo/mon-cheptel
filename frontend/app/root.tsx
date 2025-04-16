@@ -36,10 +36,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <p>Routes</p>
         <NavLink to="/" end>Tableau de Bord</NavLink>
-        <NavLink to="/create-animal" end>Créer</NavLink>
-        <NavLink to="/filters" end>Filtres</NavLink>
-        <NavLink to="/animals" end>Mes animaux</NavLink>
-        <NavLink to="/animal" end>Animal</NavLink>
+        <NavLink to="/farm/create-animal" end>Créer</NavLink>
+        <NavLink to="/farm/filters" end>Filtres</NavLink>
+        <NavLink to="/farm/animals" end>Mes animaux</NavLink>
+        <NavLink to="/farm/animal" end>Animal</NavLink>
         {children}
         <ScrollRestoration />
         <Scripts />

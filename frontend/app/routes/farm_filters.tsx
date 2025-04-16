@@ -1,5 +1,5 @@
-import Filters from "~/views/filters";
-import type { Route } from "./+types/createAnimal";
+import type { Route } from "./+types/farm_filters";
+import FarmFilters from "~/views/farm_filters";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -8,6 +8,6 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function FiltersRoute() {
-  return <Filters />;
+export default function FarmFiltersRoute() {
+  return <FarmFilters />;
 }

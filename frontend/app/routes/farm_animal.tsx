@@ -1,5 +1,5 @@
-import type { Route } from "./+types/createAnimal";
-import Animal from "~/views/animal";
+import type { Route } from "./+types/farm_animal";
+import FarmAnimal from "~/views/farm_animal";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -8,6 +8,6 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function AnimalRoute() {
-  return <Animal />;
+export default function FarmAnimalRoute() {
+  return <FarmAnimal />;
 }

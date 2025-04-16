@@ -32,7 +32,7 @@ export type Vaccine = {
 }
 
 export type VeterinarianTreatment = { 
-  productName: String, 
+  productName: string, 
   administrationDate: Date, 
   durationMonths: number,
   consumptionDelayMonths: number

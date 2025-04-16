@@ -2,7 +2,7 @@
 import React from "react";
 import { useFarmContext } from "../contexts/farm";
 
-const Animal: React.FC = () => {
+const FarmAnimal: React.FC = () => {
   const { currentAnimal } = useFarmContext();
 
   return (
@@ -36,7 +36,7 @@ const Animal: React.FC = () => {
                 <h3>Vaccinations</h3>
                 <div>
                   {currentAnimal.sanitary.vaccines.map((vaccine) => (
-                    <div>
+                    <div key={vaccine.type}>
                       <p>Type: {vaccine.type}</p>
                       <p>Date: {vaccine.date.toISOString()}</p>
                       <p>Veterinarian: {vaccine.veterinarian}</p>
@@ -46,7 +46,7 @@ const Animal: React.FC = () => {
                 <h3>Traitements Vétérinaires</h3>
                 <div>
                   {currentAnimal.sanitary.veterinarianTreatments.map((treatment) => (
-                    <div>
+                    <div key={treatment.productName}>
                       <p>Nom du produit: {treatment.productName}</p>
                       <p>Date d'administration: {treatment.administrationDate.toISOString()}</p>
                       <p>Durée du traitement en mois: {treatment.durationMonths}</p>
@@ -58,14 +58,14 @@ const Animal: React.FC = () => {
                 <div>
                   <h4>Résultats d'analyse</h4>
                   {currentAnimal.sanitary.controls.analysisResults.map((analysis) => (
-                    <div>
+                    <div key={analysis.type}>
                       <p>Type: {analysis.type}</p>
                       <p>Résultat: {analysis.result}</p>
                     </div>
                   ))}
                   <h4>Dépistages</h4>
                   {currentAnimal.sanitary.controls.screenings.map((screening) => (
-                    <div>
+                    <div key={screening.type}>
                       <p>Type: {screening.type}</p>
                       <p>Date: {screening.date.toISOString()}</p>
                     </div>
@@ -74,7 +74,7 @@ const Animal: React.FC = () => {
                 <h3>Visites Vétérinaires</h3>
                 <div>
                   {currentAnimal.sanitary.veterinarianVisits.map((visit) => (
-                    <div>
+                    <div key={visit.date.toISOString()}>
                       <p>Vétérinaire: {visit.vetName}</p>
                       <p>Date: {visit.date.toISOString()}</p>
                       <p>Observations: {visit.observations}</p>
@@ -90,7 +90,7 @@ const Animal: React.FC = () => {
               <p>Nombre de lactations: {currentAnimal.reproduction.general.lactationNumber}</p>
               {
                 currentAnimal.reproduction.reproductions.map((repro) => (
-                <div>
+                <div key={repro.inseminationDate.toISOString()}>
                   <p>Date d'insémination: {repro.inseminationDate.toISOString()}</p>
                   <p>Type: {repro.type}</p>
                   <p>Nom du taureau: {repro.genitorName}</p>
@@ -99,7 +99,7 @@ const Animal: React.FC = () => {
                   <p>Observations sur l'IA/la saillie: {repro.IAObservations}</p>
                   <h3>Contrôles de gestation</h3>
                   {repro.gestationControls.map((control) => (
-                    <div>
+                    <div key={control.date.toISOString()}>
                       <p>Date: {control.date.toISOString()}</p>
                       <p>Résultats: {control.results}</p>
                       <p>Nombre de jours après l'IA: {control.daysAfterIA}</p>
@@ -159,4 +159,4 @@ const Animal: React.FC = () => {
   );
 };
 
-export default Animal;
+export default FarmAnimal;

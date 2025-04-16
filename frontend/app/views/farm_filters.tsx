@@ -1,5 +1,6 @@
 // Example usage in a component
 import React from "react";
+import { NavLink } from "react-router";
 
 const Filters: React.FC = () => {
   return (
@@ -73,6 +74,9 @@ const Filters: React.FC = () => {
                 <label htmlFor="falseParage">Non</label>
             </div>
         </div>
+        <button>
+            <NavLink to="/farm/animals" end>Rechercher</NavLink>
+        </button>
     </div>
   );
 };
