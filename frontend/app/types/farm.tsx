@@ -1,12 +1,12 @@
 
 export enum Gender {
   "male",
-  "female"
+  "femelle"
 }
 
 export enum Result {
-  "positive",
-  "negative"
+  "positif",
+  "negatif"
 }
 
 export enum ReproductionStatus {

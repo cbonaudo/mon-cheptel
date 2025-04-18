@@ -10,21 +10,21 @@ export const dashboardDataSample: DashboardData = {
 export const animalListSample: Animal[] = [{
     id: "1234",
     pentagNumber: "123456",
-    gender: Gender.female,
+    gender: 1,
     age: 1,
     fatherPentagNumber: "123455",
     motherPentagNumber: "123454"
 },{
     id: "2345",
     pentagNumber: "234567",
-    gender: Gender.male,
+    gender: 1,
     age: 3,
     fatherPentagNumber: "234566",
     motherPentagNumber: "234565"
 },{
     id: "3456",
     pentagNumber: "345678",
-    gender: Gender.female,
+    gender: 0,
     age: 4,
     fatherPentagNumber: "345677",
     motherPentagNumber: "345676"
@@ -37,7 +37,7 @@ export const animalDetailsSample: AnimalDetails = {
         birthdate: new Date(),
         birthplace: "Dijon",
         race: "Charolaise",
-        gender: Gender.female,
+        gender: 1,
         fatherPentagNumber: "123455",
         motherPentagNumber: "123454",
         enteredFarmDate: new Date(),
@@ -68,7 +68,7 @@ export const animalDetailsSample: AnimalDetails = {
         controls: {
             analysisResults: [{
                 type: "Grippe",
-                result: Result.positive
+                result: 0
             }],
             screenings: [{
                 type: "Covid",
@@ -83,13 +83,13 @@ export const animalDetailsSample: AnimalDetails = {
     },
     reproduction: {
         general: {
-            status: ReproductionStatus.Saillie,
+            status: 0,
             firstInseminationDate: new Date(),
             lactationNumber: 4
         },
         reproductions: [{
             inseminationDate: new Date(),
-            type: ReproductionType.IA,
+            type: 0,
             genitorName: "Sarro",
             genitorPentagNumber: "123455",
             origin: "Bourg",
@@ -97,7 +97,7 @@ export const animalDetailsSample: AnimalDetails = {
             IAObservations: "Pas d'observations sur l'IA",
             gestationControls: [{
                 date: new Date(),
-                results: GestationResults.Gestante,
+                results: 0,
                 daysAfterIA: 11,
                 observations: "Pas d'observations sur la gestation"
             }],

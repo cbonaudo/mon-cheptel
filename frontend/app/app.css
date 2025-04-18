@@ -7,9 +7,30 @@
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-amber-50 dark:bg-gray-950 text-neutral-200;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
+}
+
+.header-1 {
+  @apply self-center bg-green-800 p-8;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 48px;
+}
+h2 {
+  font-weight: bold;
+  font-size: 32px;
+}
+h3 {
+  font-weight: bold;
+  font-size: 24px;
+}
+h4 {
+  font-weight: bold;
+  font-size: 16px;
 }

@@ -33,14 +33,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
-        <p>Routes</p>
-        <NavLink to="/" end>Tableau de Bord</NavLink>
-        <NavLink to="/farm/create-animal" end>Créer</NavLink>
-        <NavLink to="/farm/filters" end>Filtres</NavLink>
-        <NavLink to="/farm/animals" end>Mes animaux</NavLink>
-        <NavLink to="/farm/animal" end>Animal</NavLink>
-        {children}
+      <body className="bg-amber-100">
+        <div className="flex gap-16 bg-green-800 p-4">
+          <NavLink to="/" end>Tableau de Bord</NavLink>
+          <NavLink to="/farm/create-animal" end>Créer</NavLink>
+          <NavLink to="/farm/filters" end>Filtres</NavLink>
+          <NavLink to="/farm/animals" end>Mes animaux</NavLink>
+          <NavLink to="/farm/animal" end>Animal</NavLink>
+        </div>
+        <div className="p-16">
+          {children}
+        </div>
         <ScrollRestoration />
         <Scripts />
       </body>
