@@ -67,6 +67,7 @@ export type Reproduction = {
     type: ReproductionType,
     genitorName: string,
     genitorPentagNumber: string,
+    origin: string,
     IANumber: number,
     IAObservations: string,
     gestationControls: GestationControl[],
@@ -153,4 +154,11 @@ export type Animal = {
   age: number;
   fatherPentagNumber: string;
   motherPentagNumber: string;
+}
+
+export type DashboardData = {
+  cattleNumber: number;
+  cattleInProduction: number;
+  cattleNotInProduction: number;
+  cattleNotProducing: number;
 }

@@ -1,4 +1,11 @@
-import { Gender, GestationResults, ReproductionStatus, ReproductionType, Result, type Animal, type AnimalDetails } from "~/types/farm";
+import { Gender, GestationResults, ReproductionStatus, ReproductionType, Result, type Animal, type AnimalDetails, type DashboardData } from "~/types/farm";
+
+export const dashboardDataSample: DashboardData = {
+    "cattleNumber": 143,
+    "cattleInProduction": 70,
+    "cattleNotInProduction": 53,
+    "cattleNotProducing": 20
+}; 
 
 export const animalListSample: Animal[] = [{
     id: "1234",
@@ -21,7 +28,7 @@ export const animalListSample: Animal[] = [{
     age: 4,
     fatherPentagNumber: "345677",
     motherPentagNumber: "345676"
-},];
+}];
 
 export const animalDetailsSample: AnimalDetails = {
     id: "1234",

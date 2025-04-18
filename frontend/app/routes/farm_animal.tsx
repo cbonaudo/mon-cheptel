@@ -4,7 +4,7 @@ import FarmAnimal from "~/views/farm_animal";
 export function meta({}: Route.MetaArgs) {
   return [
     { title: "Animal" },
-    { name: "description", content: "Page to dispaly details of an animal" },
+    { name: "description", content: "Page pour afficher les details d'un animal" },
   ];
 }
 

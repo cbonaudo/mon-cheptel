@@ -1,4 +1,4 @@
-import type { Route } from "./+types/farm_home";
+import type { Route } from "./+types/farm_dashboard";
 import FarmDashboard from "~/views/farm_dashboard";
 
 export function meta({}: Route.MetaArgs) {
@@ -8,6 +8,6 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 
-export default function FarmHome() {
+export default function FarmDashboardRoute() {
   return <FarmDashboard />;
 }

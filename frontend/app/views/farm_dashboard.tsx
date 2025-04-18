@@ -1,8 +1,21 @@
+import { NavLink } from "react-router";
+import { useFarmContext } from "~/contexts/farm";
+
 const FarmDashboard: React.FC = () => {
+  const { dashboardData } = useFarmContext();
   return (
-    <main className="flex items-center justify-center pt-16 pb-4">
-      <div className="flex-1 flex flex-col items-center gap-16 min-h-0">
-        Dashboard
+    <main>
+      <div>
+        <h1>Mon Tableau de bord</h1>
+      </div>
+      <div>
+        <h2>Mes indicateurs</h2>
+        <p>Nombre total: {dashboardData?.cattleNumber}</p>
+        <p>Vaches en production: {dashboardData?.cattleInProduction}</p>
+        <p>Vaches en traitement/écartées: {dashboardData?.cattleNotInProduction}</p>
+        <p>Veaux/Génisses ne produisant pas: {dashboardData?.cattleNotProducing}</p>
+        
+        <NavLink to="/farm/animals" end>Liste des animaux</NavLink>
       </div>
     </main>
   );
