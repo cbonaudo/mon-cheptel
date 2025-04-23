@@ -10,6 +10,7 @@ import {
 import { FarmProvider } from "./contexts/farm";
 import type { Route } from "./+types/root";
 import "./app.css";
+import Header from "./components/header";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -34,13 +35,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body className="bg-amber-100">
-        <div className="flex gap-16 bg-green-800 p-4">
-          <NavLink to="/" end>Tableau de Bord</NavLink>
-          <NavLink to="/farm/create-animal" end>Créer</NavLink>
-          <NavLink to="/farm/filters" end>Filtres</NavLink>
-          <NavLink to="/farm/animals" end>Mes animaux</NavLink>
-          <NavLink to="/farm/animal" end>Animal</NavLink>
-        </div>
+        <Header />
         <div className="p-16">
           {children}
         </div>

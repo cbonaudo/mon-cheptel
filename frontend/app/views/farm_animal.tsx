@@ -1,4 +1,3 @@
-// Example usage in a component
 import React from "react";
 import { useFarmContext } from "../contexts/farm";
 import { Gender, GestationResults, ReproductionStatus, ReproductionType, Result } from "~/types/farm";

@@ -7,30 +7,86 @@
 
 html,
 body {
-  @apply bg-amber-50 dark:bg-gray-950 text-neutral-200;
+  @apply bg-amber-50 dark:bg-gray-950 text-neutral-50;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
   }
 }
 
-.header-1 {
-  @apply self-center bg-green-800 p-8;
+@theme {
+  --color-primary: oklch(0.59 0.0807 131.87);
+  --color-primary-light: oklch(0.77 0.0727 127.33);
+
+  --color-secondary: oklch(0.44 0.0736 156.57);
+  --color-secondary-light: oklch(0.63 0.0467 159.45);
+
+  --color-tertiary: oklch(0.79 0.0386 158.74);
+  --color-tertiary-light: oklch(0.94 0.0338 160.43);
+
+  --color-contrast: oklch(0.69 0.1404 61.45);
+  --color-contrast-light: oklch(0.88 0.0173 61.93);
+  --color-contrast-dark: oklch(0.68 0.0757 68.03);
+
+  --color-gray: oklch(0.8 0 0);
+  --color-gray-light: oklch(0.93 0.0011 197.14);
+  --color-gray-dark: oklch(0.56 0.0048 271.33);
 }
 
-h1 {
-  font-weight: bold;
-  font-size: 48px;
+h1, h2 {
+  @apply font-bold;
 }
-h2 {
-  font-weight: bold;
-  font-size: 32px;
+
+button {
+  @apply cursor-pointer;
 }
-h3 {
-  font-weight: bold;
-  font-size: 24px;
+
+.header-fat {
+  @apply bg-secondary;
 }
-h4 {
-  font-weight: bold;
-  font-size: 16px;
+.header-slim {
+  @apply bg-secondary;
+}
+.header-contrast {
+  @apply bg-contrast;
+}
+
+.chip-list {
+  @apply grid grid-cols-2 font-bold text-black;
+}
+.chip-selected {
+  @apply font-normal text-neutral-50 bg-secondary-light;
+}
+
+.toggle-light {
+  @apply bg-gray text-white;
+}
+.button-light {
+  @apply bg-gray text-gray-dark;
+}
+.container {
+  @apply bg-primary;
+}
+
+.graph {
+
+}
+
+.alert {
+  @apply border-4 justify-center items-center flex;
+}
+.alert.primary {
+  @apply border-primary bg-primary-light text-primary;
+}
+.alert.secondary {
+  @apply border-secondary bg-secondary-light text-secondary;
+}
+.alert.tertiary {
+  @apply border-tertiary bg-tertiary-light text-tertiary;
+}
+.alert.gray {
+  @apply border-gray bg-gray-light text-gray;
+}
+.alert.contrast {
+  @apply border-contrast-dark bg-contrast-light text-contrast-dark;
 }
