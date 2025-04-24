@@ -1,7 +1,7 @@
 import { jsx, jsxs } from "react/jsx-runtime";
 import { PassThrough } from "node:stream";
 import { createReadableStreamFromReadable } from "@react-router/node";
-import { ServerRouter, useMatches, useActionData, useLoaderData, useParams, useRouteError, Meta, Links, NavLink, ScrollRestoration, Scripts, Outlet, isRouteErrorResponse } from "react-router";
+import { ServerRouter, useMatches, useActionData, useLoaderData, useParams, useRouteError, NavLink, Meta, Links, ScrollRestoration, Scripts, Outlet, isRouteErrorResponse } from "react-router";
 import { isbot } from "isbot";
 import { renderToPipeableStream } from "react-dom/server";
 import { createElement, createContext, useState, useContext } from "react";
@@ -252,6 +252,13 @@ const useFarmContext = () => {
   }
   return context;
 };
+const Header = () => {
+  return /* @__PURE__ */ jsxs("div", { className: "flex gap-16 bg-green-800 p-4", children: [
+    /* @__PURE__ */ jsx(NavLink, { to: "/", end: true, children: "Tableau de Bord" }),
+    /* @__PURE__ */ jsx(NavLink, { to: "/farm/animals", end: true, children: "Mes animaux" }),
+    /* @__PURE__ */ jsx(NavLink, { to: "/farm/animal", end: true, children: "Animal" })
+  ] });
+};
 const links = () => [{
   rel: "preconnect",
   href: "https://fonts.googleapis.com"
@@ -277,30 +284,7 @@ function Layout({
       }), /* @__PURE__ */ jsx(Meta, {}), /* @__PURE__ */ jsx(Links, {})]
     }), /* @__PURE__ */ jsxs("body", {
       className: "bg-amber-100",
-      children: [/* @__PURE__ */ jsxs("div", {
-        className: "flex gap-16 bg-green-800 p-4",
-        children: [/* @__PURE__ */ jsx(NavLink, {
-          to: "/",
-          end: true,
-          children: "Tableau de Bord"
-        }), /* @__PURE__ */ jsx(NavLink, {
-          to: "/farm/create-animal",
-          end: true,
-          children: "Créer"
-        }), /* @__PURE__ */ jsx(NavLink, {
-          to: "/farm/filters",
-          end: true,
-          children: "Filtres"
-        }), /* @__PURE__ */ jsx(NavLink, {
-          to: "/farm/animals",
-          end: true,
-          children: "Mes animaux"
-        }), /* @__PURE__ */ jsx(NavLink, {
-          to: "/farm/animal",
-          end: true,
-          children: "Animal"
-        })]
-      }), /* @__PURE__ */ jsx("div", {
+      children: [/* @__PURE__ */ jsx(Header, {}), /* @__PURE__ */ jsx("div", {
         className: "p-16",
         children
       }), /* @__PURE__ */ jsx(ScrollRestoration, {}), /* @__PURE__ */ jsx(Scripts, {})]
@@ -340,45 +324,123 @@ const route0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
 }, Symbol.toStringTag, { value: "Module" }));
 const FarmDashboard = () => {
   const { dashboardData } = useFarmContext();
-  const percentageInProduction = dashboardData ? Math.trunc(100 * dashboardData.cattleInProduction / dashboardData.cattleNumber) : "--";
-  const percentageNotInProduction = dashboardData ? Math.trunc(100 * dashboardData.cattleNotInProduction / dashboardData.cattleNumber) : "--";
-  const percentageNotProducing = dashboardData ? Math.trunc(100 * dashboardData.cattleNotProducing / dashboardData.cattleNumber) : "--";
-  return /* @__PURE__ */ jsxs("main", { className: "flex flex-col gap-16 items-center", children: [
-    /* @__PURE__ */ jsx("div", { className: "header-1", children: /* @__PURE__ */ jsx("h1", { children: "Mon Tableau de bord" }) }),
-    /* @__PURE__ */ jsxs("div", { className: "flex flex-col gap-8 p-8 bg-green-800 rounded-xl", children: [
-      /* @__PURE__ */ jsx("h2", { children: "Mes indicateurs" }),
-      /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-center gap-16", children: [
-        /* @__PURE__ */ jsxs("p", { children: [
-          "Nombre total:",
-          /* @__PURE__ */ jsx("div", { className: "font-bold text-6xl flex justify-center", children: dashboardData == null ? void 0 : dashboardData.cattleNumber })
+  dashboardData ? Math.trunc(100 * dashboardData.cattleInProduction / dashboardData.cattleNumber) : "--";
+  dashboardData ? Math.trunc(100 * dashboardData.cattleNotInProduction / dashboardData.cattleNumber) : "--";
+  dashboardData ? Math.trunc(100 * dashboardData.cattleNotProducing / dashboardData.cattleNumber) : "--";
+  return /* @__PURE__ */ jsxs("div", { className: "flex", children: [
+    /* @__PURE__ */ jsxs("div", { className: "flex flex-col", children: [
+      /* @__PURE__ */ jsxs("div", { className: "flex", children: [
+        /* @__PURE__ */ jsxs("div", { children: [
+          /* @__PURE__ */ jsx("div", { className: "header-fat", children: /* @__PURE__ */ jsx("h1", { children: "Mon Cheptel" }) }),
+          /* @__PURE__ */ jsxs("div", { className: "chip-list", children: [
+            /* @__PURE__ */ jsxs("div", { children: [
+              "250 ",
+              /* @__PURE__ */ jsx("span", { className: "chip-selected", children: "Animaux" })
+            ] }),
+            /* @__PURE__ */ jsxs("div", { children: [
+              "28 ",
+              /* @__PURE__ */ jsx("span", { className: "chip-selected", children: "IA restantes" })
+            ] }),
+            /* @__PURE__ */ jsxs("div", { children: [
+              "29 ",
+              /* @__PURE__ */ jsx("span", { className: "chip-selected", children: "En traitement" })
+            ] }),
+            /* @__PURE__ */ jsxs("div", { children: [
+              "29 ",
+              /* @__PURE__ */ jsx("span", { className: "chip-selected", children: "Veaux" })
+            ] })
+          ] })
         ] }),
-        /* @__PURE__ */ jsxs("p", { children: [
-          "Vaches en production:",
-          /* @__PURE__ */ jsxs("div", { className: "font-bold text-2xl flex justify-center", children: [
-            percentageInProduction,
-            " %"
+        /* @__PURE__ */ jsxs("div", { children: [
+          /* @__PURE__ */ jsx("div", { className: "header-fat", children: /* @__PURE__ */ jsx("h1", { children: "Animaux en production" }) }),
+          /* @__PURE__ */ jsxs("div", { className: "chip-list", children: [
+            /* @__PURE__ */ jsxs("div", { children: [
+              "180 ",
+              /* @__PURE__ */ jsx("span", { className: "chip-selected", children: "Animaux" })
+            ] }),
+            /* @__PURE__ */ jsxs("div", { children: [
+              "11 ",
+              /* @__PURE__ */ jsx("span", { className: "chip-selected", children: "Sous antibio" })
+            ] }),
+            /* @__PURE__ */ jsxs("div", { children: [
+              "14 ",
+              /* @__PURE__ */ jsx("span", { className: "chip-selected", children: "Période Colostrum" })
+            ] }),
+            /* @__PURE__ */ jsxs("div", { children: [
+              "19 ",
+              /* @__PURE__ */ jsx("span", { className: "chip-selected", children: "Taries" })
+            ] })
+          ] })
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxs("div", { className: "flex", children: [
+        /* @__PURE__ */ jsxs("div", { className: "container", children: [
+          /* @__PURE__ */ jsxs("div", { className: "flex", children: [
+            /* @__PURE__ */ jsx("div", { className: "header-slim", children: /* @__PURE__ */ jsx("h2", { children: "Performance lait by PERF'LAIT" }) }),
+            /* @__PURE__ */ jsx("div", { children: "Edit" })
           ] }),
-          /* @__PURE__ */ jsx("div", { className: "font-bold text-6xl flex justify-center", children: dashboardData == null ? void 0 : dashboardData.cattleInProduction })
+          /* @__PURE__ */ jsx("div", { className: "graph", children: "Graph 1" })
         ] }),
-        /* @__PURE__ */ jsxs("p", { children: [
-          "Vaches en traitement/écartées:",
-          /* @__PURE__ */ jsxs("div", { className: "font-bold text-2xl flex justify-center", children: [
-            percentageNotInProduction,
-            " %"
+        /* @__PURE__ */ jsxs("div", { className: "container", children: [
+          /* @__PURE__ */ jsxs("div", { className: "flex", children: [
+            /* @__PURE__ */ jsx("div", { className: "header-slim", children: /* @__PURE__ */ jsx("h2", { children: "Performance repro" }) }),
+            /* @__PURE__ */ jsx("div", { children: "Edit" })
           ] }),
-          /* @__PURE__ */ jsx("div", { className: "font-bold text-6xl flex justify-center", children: dashboardData == null ? void 0 : dashboardData.cattleNotInProduction })
-        ] }),
-        /* @__PURE__ */ jsxs("p", { children: [
-          "Veaux/Génisses ne produisant pas:",
-          /* @__PURE__ */ jsxs("div", { className: "font-bold text-2xl flex justify-center", children: [
-            percentageNotProducing,
-            " %"
-          ] }),
-          /* @__PURE__ */ jsx("div", { className: "font-bold text-6xl flex justify-center", children: dashboardData == null ? void 0 : dashboardData.cattleNotProducing })
+          /* @__PURE__ */ jsx("div", { className: "graph", children: "Graph 1" })
         ] })
       ] })
     ] }),
-    /* @__PURE__ */ jsx("div", { className: "flex items-center justify-center p-8 bg-green-800 rounded-xl w-fit", children: /* @__PURE__ */ jsx(NavLink, { to: "/farm/animals", end: true, children: "Liste des animaux" }) })
+    /* @__PURE__ */ jsxs("div", { children: [
+      /* @__PURE__ */ jsxs("div", { className: "flex", children: [
+        /* @__PURE__ */ jsxs("button", { className: "toggle-light", children: [
+          "Filtres avancés ",
+          /* @__PURE__ */ jsx("span", { children: "V" })
+        ] }),
+        /* @__PURE__ */ jsxs("button", { className: "button-light", children: [
+          /* @__PURE__ */ jsx("span", { children: "+" }),
+          " Ajouter des indicateurs"
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxs("div", { children: [
+        /* @__PURE__ */ jsxs("div", { children: [
+          /* @__PURE__ */ jsx("div", { children: "Cloche" }),
+          /* @__PURE__ */ jsx("div", { className: "header-contrast", children: "Alertes" })
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "alert contrast", children: [
+          /* @__PURE__ */ jsx("div", { children: "Prochain rendez-vous vétérinaire" }),
+          /* @__PURE__ */ jsxs("div", { children: [
+            /* @__PURE__ */ jsx("div", { children: "9h00" }),
+            /* @__PURE__ */ jsx("div", { children: "15/02/25" })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "alert tertiary", children: [
+          /* @__PURE__ */ jsx("div", { children: "Traitement en cours à vérifier" }),
+          /* @__PURE__ */ jsxs("div", { children: [
+            /* @__PURE__ */ jsx("div", { children: "Toute la journée" }),
+            /* @__PURE__ */ jsx("div", { children: "30/02/25" })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "alert gray", children: [
+          /* @__PURE__ */ jsx("div", { children: "15 en perte de performance (-2L/j)" }),
+          /* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsx("div", { children: "au 10/02/25" }) })
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "alert secondary", children: [
+          /* @__PURE__ */ jsx("div", { children: "Déclaration PAC J-2" }),
+          /* @__PURE__ */ jsxs("div", { children: [
+            /* @__PURE__ */ jsx("div", { children: "Toute la journée" }),
+            /* @__PURE__ */ jsx("div", { children: "28/02/25" })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxs("div", { className: "alert primary flex-col", children: [
+          /* @__PURE__ */ jsx("div", { children: "Dernier prélèvement tank" }),
+          /* @__PURE__ */ jsxs("div", { className: "flex", children: [
+            /* @__PURE__ */ jsx("div", { children: "6312 L" }),
+            /* @__PURE__ */ jsx("div", { children: "|" }),
+            /* @__PURE__ */ jsx("div", { children: "Jours de production : 3" })
+          ] })
+        ] })
+      ] })
+    ] })
   ] });
 };
 function meta$4({}) {
@@ -1034,14 +1096,14 @@ const route5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
   default: farm_animals,
   meta
 }, Symbol.toStringTag, { value: "Module" }));
-const serverManifest = { "entry": { "module": "/mon-cheptelassets/entry.client-BN1DNq0F.js", "imports": ["/mon-cheptelassets/chunk-K6CSEXPM-BiMbIu0n.js"], "css": [] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": true, "module": "/mon-cheptelassets/root-CxZn5fGV.js", "imports": ["/mon-cheptelassets/chunk-K6CSEXPM-BiMbIu0n.js", "/mon-cheptelassets/with-props-BRVLWYxm.js", "/mon-cheptelassets/farm-D2TQkFqx.js"], "css": ["/mon-cheptelassets/root-CZuq60DS.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "hydrateFallbackModule": void 0 }, "routes/farm_dashboard": { "id": "routes/farm_dashboard", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/mon-cheptelassets/farm_dashboard-Db_IVoU2.js", "imports": ["/mon-cheptelassets/with-props-BRVLWYxm.js", "/mon-cheptelassets/chunk-K6CSEXPM-BiMbIu0n.js", "/mon-cheptelassets/farm-D2TQkFqx.js"], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "hydrateFallbackModule": void 0 }, "routes/farm_createAnimal": { "id": "routes/farm_createAnimal", "parentId": "root", "path": "farm/create-animal", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/mon-cheptelassets/farm_createAnimal-y84GEz7s.js", "imports": ["/mon-cheptelassets/with-props-BRVLWYxm.js", "/mon-cheptelassets/chunk-K6CSEXPM-BiMbIu0n.js", "/mon-cheptelassets/farm-D2TQkFqx.js"], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "hydrateFallbackModule": void 0 }, "routes/farm_animal": { "id": "routes/farm_animal", "parentId": "root", "path": "farm/animal", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/mon-cheptelassets/farm_animal-McOI3IrV.js", "imports": ["/mon-cheptelassets/with-props-BRVLWYxm.js", "/mon-cheptelassets/chunk-K6CSEXPM-BiMbIu0n.js", "/mon-cheptelassets/farm-D2TQkFqx.js", "/mon-cheptelassets/farm-CCkK0R50.js"], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "hydrateFallbackModule": void 0 }, "routes/farm_filters": { "id": "routes/farm_filters", "parentId": "root", "path": "farm/filters", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/mon-cheptelassets/farm_filters-DRKsEiNU.js", "imports": ["/mon-cheptelassets/with-props-BRVLWYxm.js", "/mon-cheptelassets/chunk-K6CSEXPM-BiMbIu0n.js"], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "hydrateFallbackModule": void 0 }, "routes/farm_animals": { "id": "routes/farm_animals", "parentId": "root", "path": "farm/animals", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/mon-cheptelassets/farm_animals-DcFgxMMN.js", "imports": ["/mon-cheptelassets/with-props-BRVLWYxm.js", "/mon-cheptelassets/chunk-K6CSEXPM-BiMbIu0n.js", "/mon-cheptelassets/farm-D2TQkFqx.js", "/mon-cheptelassets/farm-CCkK0R50.js"], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "hydrateFallbackModule": void 0 } }, "url": "/mon-cheptelassets/manifest-6a44a40e.js", "version": "6a44a40e" };
+const serverManifest = { "entry": { "module": "/assets/entry.client-BN1DNq0F.js", "imports": ["/assets/chunk-K6CSEXPM-BiMbIu0n.js"], "css": [] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": true, "module": "/assets/root-D3KuOSrK.js", "imports": ["/assets/chunk-K6CSEXPM-BiMbIu0n.js", "/assets/with-props-BRVLWYxm.js", "/assets/farm-D2TQkFqx.js"], "css": ["/assets/root-DHvQjs35.css"], "clientActionModule": void 0, "clientLoaderModule": void 0, "hydrateFallbackModule": void 0 }, "routes/farm_dashboard": { "id": "routes/farm_dashboard", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/farm_dashboard-DAcjOvPk.js", "imports": ["/assets/with-props-BRVLWYxm.js", "/assets/chunk-K6CSEXPM-BiMbIu0n.js", "/assets/farm-D2TQkFqx.js"], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "hydrateFallbackModule": void 0 }, "routes/farm_createAnimal": { "id": "routes/farm_createAnimal", "parentId": "root", "path": "farm/create-animal", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/farm_createAnimal-y84GEz7s.js", "imports": ["/assets/with-props-BRVLWYxm.js", "/assets/chunk-K6CSEXPM-BiMbIu0n.js", "/assets/farm-D2TQkFqx.js"], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "hydrateFallbackModule": void 0 }, "routes/farm_animal": { "id": "routes/farm_animal", "parentId": "root", "path": "farm/animal", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/farm_animal-McOI3IrV.js", "imports": ["/assets/with-props-BRVLWYxm.js", "/assets/chunk-K6CSEXPM-BiMbIu0n.js", "/assets/farm-D2TQkFqx.js", "/assets/farm-CCkK0R50.js"], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "hydrateFallbackModule": void 0 }, "routes/farm_filters": { "id": "routes/farm_filters", "parentId": "root", "path": "farm/filters", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/farm_filters-DRKsEiNU.js", "imports": ["/assets/with-props-BRVLWYxm.js", "/assets/chunk-K6CSEXPM-BiMbIu0n.js"], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "hydrateFallbackModule": void 0 }, "routes/farm_animals": { "id": "routes/farm_animals", "parentId": "root", "path": "farm/animals", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/farm_animals-DcFgxMMN.js", "imports": ["/assets/with-props-BRVLWYxm.js", "/assets/chunk-K6CSEXPM-BiMbIu0n.js", "/assets/farm-D2TQkFqx.js", "/assets/farm-CCkK0R50.js"], "css": [], "clientActionModule": void 0, "clientLoaderModule": void 0, "hydrateFallbackModule": void 0 } }, "url": "/assets/manifest-8fa1c571.js", "version": "8fa1c571" };
 const assetsBuildDirectory = "build/client";
-const basename = "/mon-cheptel";
+const basename = "/";
 const future = { "unstable_middleware": false, "unstable_optimizeDeps": false, "unstable_splitRouteModules": false, "unstable_viteEnvironmentApi": false };
 const ssr = true;
 const isSpaMode = false;
 const prerender = [];
-const publicPath = "/mon-cheptel";
+const publicPath = "/";
 const entry = { module: entryServer };
 const routes = {
   "root": {
