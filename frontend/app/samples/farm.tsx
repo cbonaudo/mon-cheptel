@@ -13,21 +13,27 @@ export const animalListSample: Animal[] = [{
     gender: 1,
     age: 1,
     fatherPentagNumber: "123455",
-    motherPentagNumber: "123454"
+    motherPentagNumber: "123454",
+    sanitaryStatus: "En production",
+    race: "34"
 },{
     id: "2345",
     pentagNumber: "234567",
     gender: 1,
     age: 3,
     fatherPentagNumber: "234566",
-    motherPentagNumber: "234565"
+    motherPentagNumber: "234565",
+    sanitaryStatus: "En production",
+    race: "66"
 },{
     id: "3456",
     pentagNumber: "345678",
     gender: 0,
     age: 4,
     fatherPentagNumber: "345677",
-    motherPentagNumber: "345676"
+    motherPentagNumber: "345676",
+    sanitaryStatus: "En production",
+    race: "34"
 }];
 
 export const animalDetailsSample: AnimalDetails = {

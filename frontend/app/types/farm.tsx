@@ -152,8 +152,10 @@ export type Animal = {
   pentagNumber: string;
   gender: Gender;
   age: number;
+  race: string;
   fatherPentagNumber: string;
   motherPentagNumber: string;
+  sanitaryStatus: string;
 }
 
 export type DashboardData = {

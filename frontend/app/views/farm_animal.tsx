@@ -8,185 +8,153 @@ const FarmAnimal: React.FC = () => {
   return (
     <div>
       { currentAnimal ? (
-        <div className="flex flex-col gap-8">
-          <div className="header-1">
-            <h1>Mon Animal</h1>
-          </div>
-
-          <div className="flex flex-col gap-8 p-8 bg-green-800 rounded-xl">
-            <h2>Identification</h2>
-            <div className="grid grid-cols-2">
-              <p>N° de Boucle: {currentAnimal.identification.pentagNumber}</p>
-              <p>Date de naissance: {currentAnimal.identification.birthdate.toISOString()}</p>
-              <p>Lieu de naissance: {currentAnimal.identification.birthplace}</p>
-              <p>Race: {currentAnimal.identification.race}</p>
-              <p>Sexe: {Gender[currentAnimal.identification.gender]}</p>
-              <p>N° du père: {currentAnimal.identification.fatherPentagNumber}</p>
-              <p>N° de la mère: {currentAnimal.identification.motherPentagNumber}</p>
-              <p>Date d'entrée dans l'élevage: {currentAnimal.identification.enteredFarmDate.toISOString()}</p>
-              <p>Date de sortie (abattage, vente, mortalité): {currentAnimal.identification.exitedFarmDate.toISOString()}</p>
-            </div>
-          </div>
-          
-          <div className="flex flex-col gap-8 p-8 bg-green-800 rounded-xl">
-            <h2>Suivi sanitaire et traitements</h2>
-            <div className="flex flex-col gap-8">
-              <h3>Statut sanitaire</h3>
-              <div className="grid grid-cols-2">
-                <p>Nombre de mammites: {currentAnimal.sanitary.status.mastitis}</p>
-                <p>Problèmes métaboliques: {currentAnimal.sanitary.status.metabolicProblems}</p>
-                <p>Score d'état corporel (Body Condition Score): {currentAnimal.sanitary.status.BCS}</p>
-                <p>Boiteries: {currentAnimal.sanitary.status.limping}</p>
-              </div> 
-              <h3>Vaccinations</h3>
-              <div className="grid grid-cols-2">
-                {currentAnimal.sanitary.vaccines.map((vaccine) => (
-                  <div key={vaccine.type}>
-                    <p>Type: {vaccine.type}</p>
-                    <p>Date: {vaccine.date.toISOString()}</p>
-                    <p>Veterinarian: {vaccine.veterinarian}</p>
-                  </div>
-                  ))}
-              </div>
-              <h3>Traitements Vétérinaires</h3>
-              <div className="grid grid-cols-2">
-                {currentAnimal.sanitary.veterinarianTreatments.map((treatment) => (
-                  <div key={treatment.productName}>
-                    <p>Nom du produit: {treatment.productName}</p>
-                    <p>Date d'administration: {treatment.administrationDate.toISOString()}</p>
-                    <p>Durée du traitement en mois: {treatment.durationMonths}</p>
-                    <p>Temps d'attente avant consommation (lait/viande) en mois: {treatment.consumptionDelayMonths}</p>
-                  </div>
-                ))}
-              </div>
-              <h3>Analyse et contrôles sanitaires</h3>
-              <div className="flex flex-col gap-8">
-                <div>
-                  <h4>Résultats d'analyse</h4>
-                  <div className="grid grid-cols-2 pt-8">
-                    {currentAnimal.sanitary.controls.analysisResults.map((analysis) => (
-                      <div key={analysis.type}>
-                        <p>Type: {analysis.type}</p>
-                        <p>Résultat: {Result[analysis.result]}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h4>Dépistages</h4>
-                  <div className="grid grid-cols-2 pt-8">
-                    {currentAnimal.sanitary.controls.screenings.map((screening) => (
-                      <div key={screening.type}>
-                        <p>Type: {screening.type}</p>
-                        <p>Date: {screening.date.toISOString()}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div>
-                <h3>Visites Vétérinaires</h3>
-                <div className="grid grid-cols-2 pt-8">
-                  {currentAnimal.sanitary.veterinarianVisits.map((visit) => (
-                    <div key={visit.date.toISOString()}>
-                      <p>Vétérinaire: {visit.vetName}</p>
-                      <p>Date: {visit.date.toISOString()}</p>
-                      <p>Observations: {visit.observations}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-8 p-8 bg-green-800 rounded-xl">
-            <h2>Reproduction</h2>
+        <div className="text-black">
+          <div>
+            <div><div><h1>INFORMATIONS GENERALES</h1> ---------</div><div>Edit</div></div>
             <div>
-              <p>Statut reproductif: {ReproductionStatus[currentAnimal.reproduction.general.status]}</p>
-              <p>Age à la première insémination: {currentAnimal.reproduction.general.firstInseminationDate.toISOString()}</p>
-              <p>Nombre de lactations: {currentAnimal.reproduction.general.lactationNumber}</p>
-              <div className="flex flex-col gap-16 pt-8">
-                {
-                  currentAnimal.reproduction.reproductions.map((repro) => (
-                  <div className="flex flex-col gap-8">
-                    <h3>Reproduction {repro.inseminationDate.toISOString()}</h3>
-                    <div key={repro.inseminationDate.toISOString()}>
-                      <p>Type: {ReproductionType[repro.type]}</p>
-                      <p>Nom du taureau: {repro.genitorName}</p>
-                      <p>N° du taureau: {repro.genitorPentagNumber}</p>
-                      <p>Numéro de la dose IA: {repro.IANumber}</p>
-                      <p>Observations sur l'IA/la saillie: {repro.IAObservations}</p>
-                      <div className="pt-8">
-                        <h3>Contrôles de gestation</h3>
-                        <div className="grid grid-cols-2 gap-8 p-8">
-                          {repro.gestationControls.map((control) => (
-                            <div key={control.date.toISOString()}>
-                              <p>Date: {control.date.toISOString()}</p>
-                              <p>Résultats: {GestationResults[control.results]}</p>
-                              <p>Nombre de jours après l'IA: {control.daysAfterIA}</p>
-                              <p>Observations: {control.observations}</p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                      <div>
-                        <h3>Cycle de reproduction post-vêlage</h3>
-                        <div className="pt-8">
-                          <p>Date de retour en chaleurs: {repro.postCalvingReproductionCycle.rebreedingDate.toISOString()}</p>
-                          <p>Intensité des chaleurs: {repro.postCalvingReproductionCycle.rebreedingIntensity}</p>
-                          <p>Delai vêlage - vêlage précédent en mois: {repro.postCalvingReproductionCycle.calvingInseminationIntervalMonths}</p>
-                          <p>Interval par mois entre les velages: {repro.postCalvingReproductionCycle.calvingToCalvingIntervalMonths}</p>
-                          <p>Nombre d'inséminations par gestation: {repro.postCalvingReproductionCycle.inseminationAmount}</p>
-                          <p>Décision de reforme: {repro.postCalvingReproductionCycle.reformDecision}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+              <div className="flex flex-col flex-wrap h-20">
+                <div>Samsarah</div>
+                <div>COW</div>
+                <div>.</div>
+                <div>Numéro : 561603 <span>2526</span></div>
+                <div>Âge : <span>2 ans 11 mois</span></div>
+                <div>Date de naissance : <span>25/05/2022</span></div>
+                <div>Race : <span>Prim'holstein</span></div>
+                <div>Sexe : <span>Femelle</span></div>
+                <div>Lot : <span>Lactation</span></div>
+                <div>Exploitation de naissance : <span>56160340</span></div>
+                <div>.</div>
+                <div><button>Afficher plus <span>V</span></button></div>
               </div>
             </div>
           </div>
-
-          <div className="flex flex-col gap-8 p-8 bg-green-800 rounded-xl">
-            <h2>Production</h2>
-            <div className="grid grid-cols-2 gap-16">
-              <div className="flex flex-col gap-8">
-                <h3>Lait</h3>
+          <div>
+            <div><div><h1>PEDIGREE</h1> ---------</div><div>Edit</div></div>
+            <div>
+            <div>
                 <div>
-                  <p>Quantité de lait produite par jour: {currentAnimal.production.milk.dailyLiters}</p>
-                  <p>Production par lactation: {currentAnimal.production.milk.litersByLactation}</p>
-                  <p>Production cumulée à vie: {currentAnimal.production.milk.lifetimeLiters}</p>
-                  <p>Pic de lactation: {currentAnimal.production.milk.lactationPeakLiters}</p>
-                  <p>Persisence de lactation: {currentAnimal.production.milk.lactationPersistence}</p>
-                  <p>Production: {currentAnimal.production.milk.followUp}</p>
-                </div>
-              </div>
-              <div className="flex flex-col gap-8">
-                <h3>Qualité</h3>
-                <div>
-                  <p>Taux butyreux (TB): {currentAnimal.production.quality.fatRating}</p>
-                  <p>Taux protéique(TP): {currentAnimal.production.quality.proteinRating}</p>
-                  <p>Cellules somatiques: {currentAnimal.production.quality.somaticCells}</p>
-                  <p>Taux d'urée: {currentAnimal.production.quality.ureaLevels}</p>
-                  <p>Éfficacité alimentaire: {currentAnimal.production.quality.alimentaryEfficency}</p>
-                  <p>Présence d'antibiotiques: {currentAnimal.production.quality.antibioticPresence}</p>
-                </div>
-              </div>
-              <div className="flex flex-col gap-8">
-                <h3>Performance Economique</h3>
-                <div>
-                  <p>Cout alimentaire par litre de lait produit: {currentAnimal.production.economic.alimentaryCostPerProducedLiter}</p>
-                  <p>Revenus par vache: {currentAnimal.production.economic.revenue}</p>
-                  <p>Charges vétérinaire et traitements: {currentAnimal.production.economic.vetCharges}</p>
-                  <h4>Valeur génétique</h4>
+                  <div>Père</div>
                   <div>
-                    <p>Index laitier: {currentAnimal.production.economic.geneticValue.lacticIndex}</p>
-                    <p>Reproduction: {currentAnimal.production.economic.geneticValue.reproduction}</p>
-                    <p>Santé mammaire: {currentAnimal.production.economic.geneticValue.mammaryHealth}</p>
+                    <div>Nom : Haddock</div>
+                    <div>Numéro : 3256482285</div>
+                    <div>Race : 34</div>
+                    <div>ISU : 125</div>
+                    <div>CD : 82</div>
                   </div>
+                </div>
+                <div>
+                  <div>
+                    <div>LAIT</div>
+                    <div>TP</div>
+                    <div>TB</div>
+                    <div>INEL</div>
+                    <div>939</div>
+                    <div>-1.1</div>
+                    <div>-4.2</div>
+                    <div>30</div>
+                  </div>
+                  <div>|</div>
+                  <div>
+                    <div>MO</div>
+                    <div>MA</div>
+                    <div>CC</div>
+                    <div>ME</div>
+                    <div>1.4</div>
+                    <div>1.1</div>
+                    <div>0.3</div>
+                    <div>0.5</div>
+                  </div>
+                  <div>|</div>
+                  <div>
+                    <div>STMA</div>
+                    <div>REPRO</div>
+                    <div>0.8</div>
+                    <div>2.1</div>
+                  </div>
+                </div>
+                <div>
+                  <div>Père : Grimpy</div>
+                  <div>Mère : Iroise</div>
+                </div>
+              </div><div>
+                <div>
+                  <div>Mère</div>
+                  <div>
+                    <div>Nom : Maya</div>
+                    <div>Numéro : 5634402144</div>
+                    <div>Race : 66</div>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <div>ISU</div>
+                    <div>CD</div>
+                    <div>121</div>
+                    <div>78</div>
+                  </div>
+                  <div>|</div>
+                  <div>
+                    <div>LAIT</div>
+                    <div>TP</div>
+                    <div>TB</div>
+                    <div>INEL</div>
+                    <div>841</div>
+                    <div>-0.9</div>
+                    <div>-3.1</div>
+                    <div>23</div>
+                  </div>
+                  <div>|</div>
+                  <div>
+                    <div>MO</div>
+                    <div>MA</div>
+                    <div>CC</div>
+                    <div>ME</div>
+                    <div>1.1</div>
+                    <div>0.9</div>
+                    <div>0.5</div>
+                    <div>0.7</div>
+                  </div>
+                </div>
+                <div>
+                  <div>Père : Galop</div>
+                  <div>Mère : Jeanna</div>
                 </div>
               </div>
             </div>
+          </div>
+          <div>
+            <div><div><h1>SANTE</h1> ---------</div><div>Edit</div></div>
+            <div>
+              <div>Repro<button>En gestation <span>V</span></button></div>
+              <div>Vaccins<button>A jour <span>V</span></button></div>
+              <div>Prochains traitements<span>12/05/2025</span></div>
+              <div>.</div>
+              <div>Poids<span>127 kg</span></div>
+              <div>Statut<button>En production <span>V</span></button></div>
+              <div>Dernier parage<span>3 semaines</span></div>
+              <div><button>Afficher plus <span>V</span></button></div>
+              </div>
+          </div>
+          <div>
+            <div><div><h1>PERF'LAIT</h1> ---------</div><div>Edit</div></div>
+            <div>
+              <div>graph</div>
+              <div>graph</div>
+              <div><button>Afficher plus <span>V</span></button></div>
+            </div>
+          </div>
+          <div>
+            <div><div><h1>REPRODUCTION</h1> ---------</div><div>Edit</div></div>
+            <div>
+              <div>graph</div>
+              <div><button>Afficher plus <span>V</span></button></div>
+            </div>
+          </div>
+          <div>
+            <button>
+              <div>Ajouter</div>
+              <div>+</div>
+            </button>
           </div>
         </div>)
         : <p>Pas d'animal sélectionné</p>

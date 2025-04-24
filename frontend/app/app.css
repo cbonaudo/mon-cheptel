@@ -30,7 +30,7 @@ body {
 
   --color-gray: oklch(0.8 0 0);
   --color-gray-light: oklch(0.93 0.0011 197.14);
-  --color-gray-dark: oklch(0.56 0.0048 271.33);
+  --color-gray-dark: oklch(0.57 0.025 274.45);
 }
 
 h1, h2 {
