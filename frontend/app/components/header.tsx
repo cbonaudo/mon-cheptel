@@ -1,9 +1,13 @@
 
-// Example usage in a component
 import React from "react";
-import { NavLink } from "react-router";
+import { NavLink, useLocation } from "react-router";
 
 const Header: React.FC = () => {
+  let pathname = useLocation().pathname;
+  const isDashboardSelected = pathname == "/";
+  const isAnimalsSelected = pathname.includes("animals");
+  const isAnimalSelected = pathname.endsWith("animal");
+
   return (
     <div>
       <div className="flex text-gray-dark">
@@ -15,9 +19,9 @@ const Header: React.FC = () => {
         <div>Cows</div>
       </div>
       <div className="flex text-white bg-primary justify-around">
-          <NavLink to="/" end>Tableau de Bord</NavLink>
-          <NavLink to="/farm/animals" end>Mes animaux</NavLink>
-          <NavLink to="/farm/animal" end>Animal</NavLink>
+          <NavLink to="/" end><div className={isDashboardSelected ? "link-selected": "link"}>Tableau de Bord</div></NavLink>
+          <NavLink to="/farm/animals" end><div className={isAnimalsSelected ? "link-selected": "link"}>Mes animaux</div></NavLink>
+          <NavLink to="/farm/animal" end><div className={isAnimalSelected ? "link-selected": "link"}>Animal</div></NavLink>
         </div>
       </div>
   );

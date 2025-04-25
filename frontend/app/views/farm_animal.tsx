@@ -10,31 +10,29 @@ const FarmAnimal: React.FC = () => {
       { currentAnimal ? (
         <div className="text-black">
           <div>
-            <div><div><h1>INFORMATIONS GENERALES</h1> ---------</div><div>Edit</div></div>
+            <div className="flex justify-between"><div><h1>INFORMATIONS GENERALES</h1> ---------</div><div>Edit</div></div>
             <div>
-              <div className="flex flex-col flex-wrap h-20">
+              <div className="grid grid-cols-4">
                 <div>Samsarah</div>
-                <div>COW</div>
-                <div>.</div>
                 <div>Numéro : 561603 <span>2526</span></div>
-                <div>Âge : <span>2 ans 11 mois</span></div>
-                <div>Date de naissance : <span>25/05/2022</span></div>
                 <div>Race : <span>Prim'holstein</span></div>
-                <div>Sexe : <span>Femelle</span></div>
-                <div>Lot : <span>Lactation</span></div>
                 <div>Exploitation de naissance : <span>56160340</span></div>
-                <div>.</div>
-                <div><button>Afficher plus <span>V</span></button></div>
+                <div className="row-span-2">COW</div>
+                <div>Âge : <span>2 ans 11 mois</span></div>
+                <div className="col-span-2">Sexe : <span>Femelle</span></div>
+                <div>Date de naissance : <span>25/05/2022</span></div>
+                <div>Lot : <span>Lactation</span></div>
               </div>
             </div>
+            <div className="flex justify-end"><button>Afficher plus <span>V</span></button></div>
           </div>
           <div>
-            <div><div><h1>PEDIGREE</h1> ---------</div><div>Edit</div></div>
-            <div>
-            <div>
-                <div>
+            <div className="flex justify-between"><div><h1>PEDIGREE</h1> ---------</div><div>Edit</div></div>
+            <div className="flex gap-4">
+              <div>
+                <div className="flex gap-4">
                   <div>Père</div>
-                  <div>
+                  <div className="flex flex-wrap justify-center gap-2 w-80">
                     <div>Nom : Haddock</div>
                     <div>Numéro : 3256482285</div>
                     <div>Race : 34</div>
@@ -42,8 +40,8 @@ const FarmAnimal: React.FC = () => {
                     <div>CD : 82</div>
                   </div>
                 </div>
-                <div>
-                  <div>
+                <div className="flex gap-2">
+                  <div className="grid grid-cols-4 gap-1">
                     <div>LAIT</div>
                     <div>TP</div>
                     <div>TB</div>
@@ -54,7 +52,7 @@ const FarmAnimal: React.FC = () => {
                     <div>30</div>
                   </div>
                   <div>|</div>
-                  <div>
+                  <div className="grid grid-cols-4 gap-1">
                     <div>MO</div>
                     <div>MA</div>
                     <div>CC</div>
@@ -65,35 +63,37 @@ const FarmAnimal: React.FC = () => {
                     <div>0.5</div>
                   </div>
                   <div>|</div>
-                  <div>
+                  <div className="grid grid-cols-2 gap-1">
                     <div>STMA</div>
                     <div>REPRO</div>
                     <div>0.8</div>
                     <div>2.1</div>
                   </div>
                 </div>
-                <div>
+                <div className="flex justify-around">
                   <div>Père : Grimpy</div>
                   <div>Mère : Iroise</div>
                 </div>
-              </div><div>
-                <div>
+              </div>
+              <div>|</div>
+              <div>
+                <div className="flex gap-4">
                   <div>Mère</div>
-                  <div>
+                  <div className="flex flex-wrap justify-center gap-2 w-80">
                     <div>Nom : Maya</div>
                     <div>Numéro : 5634402144</div>
                     <div>Race : 66</div>
                   </div>
                 </div>
-                <div>
-                  <div>
+                <div className="flex gap-2">
+                  <div className="grid grid-cols-2 gap-1">
                     <div>ISU</div>
                     <div>CD</div>
                     <div>121</div>
                     <div>78</div>
                   </div>
                   <div>|</div>
-                  <div>
+                  <div className="grid grid-cols-4 gap-1">
                     <div>LAIT</div>
                     <div>TP</div>
                     <div>TB</div>
@@ -104,7 +104,7 @@ const FarmAnimal: React.FC = () => {
                     <div>23</div>
                   </div>
                   <div>|</div>
-                  <div>
+                  <div className="grid grid-cols-4 gap-1">
                     <div>MO</div>
                     <div>MA</div>
                     <div>CC</div>
@@ -115,15 +115,16 @@ const FarmAnimal: React.FC = () => {
                     <div>0.7</div>
                   </div>
                 </div>
-                <div>
+                <div className="flex justify-around">
                   <div>Père : Galop</div>
                   <div>Mère : Jeanna</div>
                 </div>
               </div>
             </div>
+            <div className="flex justify-end"><button>Afficher plus <span>V</span></button></div>
           </div>
           <div>
-            <div><div><h1>SANTE</h1> ---------</div><div>Edit</div></div>
+            <div className="flex justify-between"><div><h1>SANTE</h1> ---------</div><div>Edit</div><div>Down</div></div>
             <div>
               <div>Repro<button>En gestation <span>V</span></button></div>
               <div>Vaccins<button>A jour <span>V</span></button></div>
@@ -132,25 +133,25 @@ const FarmAnimal: React.FC = () => {
               <div>Poids<span>127 kg</span></div>
               <div>Statut<button>En production <span>V</span></button></div>
               <div>Dernier parage<span>3 semaines</span></div>
-              <div><button>Afficher plus <span>V</span></button></div>
-              </div>
+            </div>
+            <div className="flex justify-end"><button>Afficher plus <span>V</span></button></div>
           </div>
           <div>
-            <div><div><h1>PERF'LAIT</h1> ---------</div><div>Edit</div></div>
+            <div className="flex justify-between"><div><h1>PERF'LAIT</h1> ---------</div><div>Edit</div></div>
+            <div className="flex">
+              <div>graph</div>
+              <div>graph</div>
+            </div>
+            <div className="flex justify-end"><button>Afficher plus <span>V</span></button></div>
+          </div>
+          <div>
+            <div className="flex justify-between"><div><h1>REPRODUCTION</h1> ---------</div><div>Edit</div></div>
             <div>
               <div>graph</div>
-              <div>graph</div>
-              <div><button>Afficher plus <span>V</span></button></div>
             </div>
+            <div className="flex justify-end"><button>Afficher plus <span>V</span></button></div>
           </div>
-          <div>
-            <div><div><h1>REPRODUCTION</h1> ---------</div><div>Edit</div></div>
-            <div>
-              <div>graph</div>
-              <div><button>Afficher plus <span>V</span></button></div>
-            </div>
-          </div>
-          <div>
+          <div className="flex justify-center">
             <button>
               <div>Ajouter</div>
               <div>+</div>

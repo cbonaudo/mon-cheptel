@@ -1,13 +1,4 @@
-import { NavLink } from "react-router";
-import { useFarmContext } from "~/contexts/farm";
-
 const FarmDashboard: React.FC = () => {
-  const { dashboardData } = useFarmContext();
-
-  const percentageInProduction = dashboardData ? Math.trunc(100 * dashboardData.cattleInProduction / dashboardData.cattleNumber) : "--";
-  const percentageNotInProduction = dashboardData ? Math.trunc(100 * dashboardData.cattleNotInProduction / dashboardData.cattleNumber) : "--";
-  const percentageNotProducing = dashboardData ? Math.trunc(100 * dashboardData.cattleNotProducing / dashboardData.cattleNumber) : "--";
-
   return (
     <div className="flex">
       <div className="flex flex-col">
