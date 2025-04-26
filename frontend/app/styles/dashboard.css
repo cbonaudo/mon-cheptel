@@ -1,0 +1,56 @@
+.header-fat {
+    @apply bg-secondary h-14 rounded-full flex justify-center items-center;
+}
+.header-slim {
+  @apply bg-secondary h-10 rounded-full flex justify-center items-center;
+}
+.header-contrast {
+  @apply bg-contrast h-10 w-30 rounded-full flex justify-center items-center p-4 text-base;
+}
+
+.chip-list {
+    @apply grid grid-cols-2 text-black gap-4;
+}
+.chip {
+    @apply grid grid-cols-[1fr_7fr] gap-2 text-center;
+}
+.chip-selected {
+    @apply text-neutral-50 bg-secondary-light rounded-full text-sm flex justify-center p-1;
+}
+  
+.container {
+    @apply bg-primary-light rounded-4xl p-4 flex flex-col gap-4;
+}
+.edit-container img {
+    @apply bg-backdrop rounded-md h-8 m-1;
+}
+.container > img {
+    @apply rounded-4xl h-43;
+}
+
+.alert {
+    @apply border-4 justify-center items-center p-4 rounded-full text-xs grid grid-cols-[3fr_1fr] gap-1;
+}
+.alert.primary {
+    @apply border-primary bg-primary-light text-primary;
+}
+.alert.secondary {
+    @apply border-secondary bg-secondary-light text-secondary flex flex-col;
+}
+.alert.tertiary {
+    @apply border-tertiary bg-tertiary-light text-tertiary;
+}
+.alert.gray {
+    @apply border-gray bg-gray-light text-gray;
+}
+.alert.contrast {
+    @apply border-contrast-dark bg-contrast-light text-contrast-dark;
+}
+
+.toggle-light {
+    @apply bg-gray text-white flex justify-center items-center rounded-full p-2 w-50;
+}
+.button-light {
+    @apply bg-gray text-gray-dark flex justify-center items-center  rounded-full p-2 w-50;
+}
+  

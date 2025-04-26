@@ -5,3 +5,8 @@ https://dark-meteor-575303.postman.co/workspace/254c2c51-db01-48c2-8e11-d3b65d66
 
 Spec:
 https://docs.google.com/document/d/1i2dLNR-nB7hho5zkp-R_kYQqHkFCNAcqU8vt175p9yw/edit?tab=t.0
+
+
+Icons:
+DL here : 
+https://fonts.google.com/icons?icon.set=Material+Icons&selected=Material+Icons+Outlined:person:&icon.query=account&icon.size=24&icon.color=%23000000

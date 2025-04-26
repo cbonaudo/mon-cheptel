@@ -20,7 +20,7 @@ const Header: React.FC = () => {
         </div>
         <div><img src={headerImage} /></div>
       </div>
-      <div className="flex text-white justify-around ">
+      <div className="flex text-white justify-around">
         <NavLink to="/" end>
           <div className={(isDashboardSelected ? "link-selected": "") + " link primary-light"}>Tableau de Bord</div>
         </NavLink>

@@ -10,6 +10,7 @@ import { FarmProvider } from "./contexts/farm";
 import type { Route } from "./+types/root";
 import "./app.css";
 import Header from "./components/header";
+import logoImage from "./assets/logo.png";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -35,8 +36,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="bg-amber-100">
         <Header />
-        <div className="p-16">
+        <div className="p-4">
           {children}
+        </div>
+        <div className="logo">
+          <img src={logoImage} />
         </div>
         <ScrollRestoration />
         <Scripts />
