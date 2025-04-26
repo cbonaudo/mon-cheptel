@@ -1,0 +1,28 @@
+.filter-header {
+    @apply bg-secondary min-w-fit p-2 rounded-xl flex justify-center font-bold text-white;
+}
+.filter-container {
+    @apply bg-contrast-light flex flex-col rounded-xl h-fit;
+}
+
+.refresh-button {
+    @apply bg-contrast rounded-full flex justify-center items-center w-10;
+}
+
+.input {
+    @apply bg-white text-gray-dark font-bold rounded-full text-sm flex justify-center p-1 pr-2 pl-2;
+}
+.input.disabled {
+    @apply text-gray;
+}
+
+.button-secondary-light {
+    @apply bg-secondary-light text-black flex justify-center items-center rounded-full p-2 pl-4 pr-4;
+}
+.button-secondary {
+    @apply self-end bg-secondary text-gray flex justify-center items-center  rounded-md pl-4 pr-2 m-2;
+}
+  
+.animal-sheet {
+    @apply grid grid-cols-[1fr_10fr] bg-secondary rounded-4xl p-4 text-white font-bold;
+}

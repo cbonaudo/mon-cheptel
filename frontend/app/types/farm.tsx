@@ -1,12 +1,12 @@
 
 export enum Gender {
-  "male",
-  "femelle"
+  "Mâle",
+  "Femelle"
 }
 
 export enum Result {
-  "positif",
-  "negatif"
+  "Positif",
+  "Négatif"
 }
 
 export enum ReproductionStatus {
@@ -148,6 +148,7 @@ export type AnimalDetails = {
 };
 
 export type Animal = {
+  isSelected: boolean;
   id: string;
   pentagNumber: string;
   gender: Gender;

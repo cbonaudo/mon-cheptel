@@ -13,7 +13,7 @@ const Header: React.FC = () => {
   return (
     <div>
       <div className="flex gap-2 mb-2">
-        <div className=" flex flex-col items-center gap-2 text-gray-dark p-2 font-bold">
+        <div className="flex flex-col items-center gap-2 text-gray-dark p-2 font-bold">
           <div className="bg-contrast-light pl-2 pr-2 rounded-xl text-sm">N° EDE</div>
           <img src={personImage} />
           <div className="text-xs">10/02/2025</div>

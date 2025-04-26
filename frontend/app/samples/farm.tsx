@@ -15,7 +15,8 @@ export const animalListSample: Animal[] = [{
     fatherPentagNumber: "123455",
     motherPentagNumber: "123454",
     sanitaryStatus: "En production",
-    race: "34"
+    race: "34",
+    isSelected: false
 },{
     id: "2345",
     pentagNumber: "234567",
@@ -24,7 +25,8 @@ export const animalListSample: Animal[] = [{
     fatherPentagNumber: "234566",
     motherPentagNumber: "234565",
     sanitaryStatus: "En production",
-    race: "66"
+    race: "66",
+    isSelected: true
 },{
     id: "3456",
     pentagNumber: "345678",
@@ -33,7 +35,8 @@ export const animalListSample: Animal[] = [{
     fatherPentagNumber: "345677",
     motherPentagNumber: "345676",
     sanitaryStatus: "En production",
-    race: "34"
+    race: "34",
+    isSelected: true
 }];
 
 export const animalDetailsSample: AnimalDetails = {

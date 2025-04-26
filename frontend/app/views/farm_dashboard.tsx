@@ -79,7 +79,7 @@ const FarmDashboard: React.FC = () => {
         </div>
         <div className="flex gap-4">
           <div className="container">            
-            <div className="grid grid-cols-[11fr_1fr] gap-2">
+            <div className="grid grid-cols-[10fr_1fr] gap-2">
               <div className="header-slim">
                 <h2>Performance lait by PERF'LAIT</h2>
               </div>
@@ -92,7 +92,7 @@ const FarmDashboard: React.FC = () => {
             </div>
           </div>
           <div className="container">
-            <div className="grid grid-cols-[11fr_1fr] gap-2">
+            <div className="grid grid-cols-[10fr_1fr] gap-2">
               <div className="header-slim">
                 <h2>Performance repro</h2>
               </div>
