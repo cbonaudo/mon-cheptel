@@ -1,0 +1,20 @@
+.link {
+    @apply p-4 rounded-full w-100 flex font-bold justify-center h-18 relative;
+}
+
+.link.primary-light {
+    @apply bg-primary-light z-3;
+}
+.link.primary {
+    @apply bg-primary -ml-26 z-2;
+}
+.link.secondary {
+    @apply bg-secondary -ml-26 z-1;
+}
+
+.link.link-selected {
+    @apply border-6 box-border z-100;
+}
+.link:not(.link-selected) {
+    @apply pt-5.5;
+}
