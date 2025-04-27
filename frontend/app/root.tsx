@@ -36,7 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="bg-amber-100">
         <Header />
-        <div className="p-4">
+        <div className="main-body">
           {children}
         </div>
         <div className="logo">

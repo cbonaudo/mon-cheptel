@@ -16,7 +16,7 @@ const FarmAnimals: React.FC = () => {
   return (
     <div className="flex flex-col gap-4 text-black">
       <div className="grid grid-cols-[1fr_8fr_9fr_4fr] gap-4">
-        <div className="border-3 rounded-full h-10 p-2 flex justify-center items-center">     
+        <div className="border-3 rounded-full h-10 p-2 flex justify-center items-center w-10">     
           <NavLink to="/" end><img src={leftImage}/></NavLink>
         </div>
         <div className="filter-container">

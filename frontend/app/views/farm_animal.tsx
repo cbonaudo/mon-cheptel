@@ -1,6 +1,14 @@
 import React from "react";
 import { useFarmContext } from "../contexts/farm";
-import { Gender, GestationResults, ReproductionStatus, ReproductionType, Result } from "~/types/farm";
+import editContrastImage from "../assets/editContrast.png";
+import addImage from "../assets/add.png"
+import leftImage from "../assets/left.png"
+import downImage from "../assets/down.png"
+import cowImage from "../assets/cow.png"
+import graph3Image from "../assets/graph-3.png"
+import graph4Image from "../assets/graph-4.png"
+import graph5Image from "../assets/graph-5.png"
+import { NavLink } from "react-router";
 
 const FarmAnimal: React.FC = () => {
   const { currentAnimal } = useFarmContext();
@@ -8,154 +16,210 @@ const FarmAnimal: React.FC = () => {
   return (
     <div>
       { currentAnimal ? (
-        <div className="text-black">
-          <div>
-            <div className="flex justify-between"><div><h1>INFORMATIONS GENERALES</h1> ---------</div><div>Edit</div></div>
-            <div>
-              <div className="grid grid-cols-4">
-                <div>Samsarah</div>
-                <div>Numéro : 561603 <span>2526</span></div>
-                <div>Race : <span>Prim'holstein</span></div>
-                <div>Exploitation de naissance : <span>56160340</span></div>
-                <div className="row-span-2">COW</div>
-                <div>Âge : <span>2 ans 11 mois</span></div>
-                <div className="col-span-2">Sexe : <span>Femelle</span></div>
-                <div>Date de naissance : <span>25/05/2022</span></div>
-                <div>Lot : <span>Lactation</span></div>
-              </div>
-            </div>
-            <div className="flex justify-end"><button>Afficher plus <span>V</span></button></div>
+        <div className="flex gap-2">
+          <div className="border-3 rounded-full h-10 p-2 flex justify-center items-center border-black fixed w-10">     
+            <NavLink to="/" end><img src={leftImage}/></NavLink>
           </div>
-          <div>
-            <div className="flex justify-between"><div><h1>PEDIGREE</h1> ---------</div><div>Edit</div></div>
-            <div className="flex gap-4">
+          <div className="w-14"></div>
+          <div className="text-gray-dark font-bold flex flex-col gap-2">
+            <div className="animal-category">
+              <div className="animal-header">
+                <div className="animal-title">
+                  <h1>INFORMATIONS GENERALES</h1>
+                  <div className="horizontal-separator" />
+                </div>
+                <div className="animal-edit">
+                  <img src={editContrastImage} />
+                </div>
+              </div>
               <div>
-                <div className="flex gap-4">
-                  <div>Père</div>
-                  <div className="flex flex-wrap justify-center gap-2 w-80">
-                    <div>Nom : Haddock</div>
-                    <div>Numéro : 3256482285</div>
-                    <div>Race : 34</div>
-                    <div>ISU : 125</div>
-                    <div>CD : 82</div>
-                  </div>
-                </div>
-                <div className="flex gap-2">
-                  <div className="grid grid-cols-4 gap-1">
-                    <div>LAIT</div>
-                    <div>TP</div>
-                    <div>TB</div>
-                    <div>INEL</div>
-                    <div>939</div>
-                    <div>-1.1</div>
-                    <div>-4.2</div>
-                    <div>30</div>
-                  </div>
-                  <div>|</div>
-                  <div className="grid grid-cols-4 gap-1">
-                    <div>MO</div>
-                    <div>MA</div>
-                    <div>CC</div>
-                    <div>ME</div>
-                    <div>1.4</div>
-                    <div>1.1</div>
-                    <div>0.3</div>
-                    <div>0.5</div>
-                  </div>
-                  <div>|</div>
-                  <div className="grid grid-cols-2 gap-1">
-                    <div>STMA</div>
-                    <div>REPRO</div>
-                    <div>0.8</div>
-                    <div>2.1</div>
-                  </div>
-                </div>
-                <div className="flex justify-around">
-                  <div>Père : Grimpy</div>
-                  <div>Mère : Iroise</div>
+                <div className="grid grid-cols-[2fr_3fr_3fr_3fr] gap-2 items-center justify-center">
+                  <div className="animal-chip">SAMSARAH</div>
+                  <div>Numéro : 561603 <span className="animal-chip">2526</span></div>
+                  <div>Race : <span className="animal-chip">Prim'holstein</span></div>
+                  <div>Âge : <span className="animal-chip">2 ans 11 mois</span></div>
+                  <div className="row-span-2 rounded-full flex justify-center items-center"><img src={cowImage} /></div>
+                  <div>Sexe : <span className="animal-chip">Femelle</span></div>
+                  <div className="col-span-2">Exploitation de naissance : <span className="animal-chip">56160340</span></div>
+                  <div>Lot : <span className="animal-chip">Lactation</span></div>
+                  <div className="col-span-2">Date de naissance : <span className="animal-chip">25/05/2022</span></div>
                 </div>
               </div>
-              <div>|</div>
-              <div>
-                <div className="flex gap-4">
-                  <div>Mère</div>
-                  <div className="flex flex-wrap justify-center gap-2 w-80">
-                    <div>Nom : Maya</div>
-                    <div>Numéro : 5634402144</div>
-                    <div>Race : 66</div>
-                  </div>
+              <div className="show-more"><button>Afficher plus <img src={downImage} /></button></div>
+            </div>
+            <div className="animal-category">
+              <div className="animal-header">
+                <div className="animal-title">
+                  <h1>PEDIGREE</h1>
+                  <div className="horizontal-separator" />
                 </div>
-                <div className="flex gap-2">
-                  <div className="grid grid-cols-2 gap-1">
-                    <div>ISU</div>
-                    <div>CD</div>
-                    <div>121</div>
-                    <div>78</div>
-                  </div>
-                  <div>|</div>
-                  <div className="grid grid-cols-4 gap-1">
-                    <div>LAIT</div>
-                    <div>TP</div>
-                    <div>TB</div>
-                    <div>INEL</div>
-                    <div>841</div>
-                    <div>-0.9</div>
-                    <div>-3.1</div>
-                    <div>23</div>
-                  </div>
-                  <div>|</div>
-                  <div className="grid grid-cols-4 gap-1">
-                    <div>MO</div>
-                    <div>MA</div>
-                    <div>CC</div>
-                    <div>ME</div>
-                    <div>1.1</div>
-                    <div>0.9</div>
-                    <div>0.5</div>
-                    <div>0.7</div>
-                  </div>
-                </div>
-                <div className="flex justify-around">
-                  <div>Père : Galop</div>
-                  <div>Mère : Jeanna</div>
+                <div className="animal-edit">
+                  <img src={editContrastImage} />
                 </div>
               </div>
+              <div className="grid grid-cols-[24fr_1fr_24fr] gap-2">
+                <div className="pedigree-container">
+                  <div className="flex gap-4">
+                    <div className="text-lg text-secondary">Père</div>
+                    <div className="flex flex-wrap justify-center gap-2">
+                      <div>Nom : <span className="text-white">Haddock</span></div>
+                      <div>Numéro : <span className="text-white">3256482285</span></div>
+                      <div>Race : <span className="text-white">34</span></div>
+                      <div>ISU : <span className="text-white">125</span></div>
+                      <div>CD : <span className="text-white">82</span></div>
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <div className="grid grid-cols-4 gap-2 array">
+                      <div>LAIT</div>
+                      <div>TP</div>
+                      <div>TB</div>
+                      <div>INEL</div>
+                      <div className="text-white">939</div>
+                      <div className="text-white">-1.1</div>
+                      <div className="text-white">-4.2</div>
+                      <div className="text-white">30</div>
+                    </div>
+                    <div className="flex justify-center grow">
+                      <div className="vertical-separator"/>                
+                    </div>
+                    <div className="grid grid-cols-4 gap-2 array">
+                      <div>MO</div>
+                      <div>MA</div>
+                      <div>CC</div>
+                      <div>ME</div>
+                      <div className="text-white">1.4</div>
+                      <div className="text-white">1.1</div>
+                      <div className="text-white">0.3</div>
+                      <div className="text-white">0.5</div>
+                    </div>
+                    <div className="flex justify-center grow">
+                      <div className="vertical-separator"/>                
+                    </div>
+                    <div className="grid grid-cols-2 gap-2 array">
+                      <div>STMA</div>
+                      <div>REPRO</div>
+                      <div className="text-white">0.8</div>
+                      <div className="text-white">2.1</div>
+                    </div>
+                  </div>
+                  <div className="flex justify-around">
+                    <div>Père : <span className="text-white">Grimpy</span></div>
+                    <div>Mère : <span className="text-white">Iroise</span></div>
+                  </div>
+                </div>
+                <div className="flex justify-center grow">
+                  <div className="vertical-separator"/>                
+                </div>
+                <div className="pedigree-container">
+                  <div className="flex gap-4">
+                    <div className="text-lg text-secondary">Mère</div>
+                    <div className="flex flex-wrap justify-center gap-2 w-80">
+                      <div>Nom : <span className="text-white">Maya</span></div>
+                      <div>Numéro : <span className="text-white">5634402144</span></div>
+                      <div>Race : <span className="text-white">66</span></div>
+                    </div>
+                  </div>
+                  <div className="flex gap-2">
+                    <div className="grid grid-cols-2 gap-1 array">
+                      <div>ISU</div>
+                      <div>CD</div>
+                      <div className="text-white">121</div>
+                      <div className="text-white">78</div>
+                    </div>
+                    <div className="flex justify-center grow">
+                      <div className="vertical-separator"/>                
+                    </div>
+                    <div className="grid grid-cols-4 gap-1 array">
+                      <div>LAIT</div>
+                      <div>TP</div>
+                      <div>TB</div>
+                      <div>INEL</div>
+                      <div className="text-white">841</div>
+                      <div className="text-white">-0.9</div>
+                      <div className="text-white">-3.1</div>
+                      <div className="text-white">23</div>
+                    </div>
+                    <div className="flex justify-center grow">
+                      <div className="vertical-separator"/>                
+                    </div>
+                    <div className="grid grid-cols-4 gap-1 array">
+                      <div>MO</div>
+                      <div>MA</div>
+                      <div>CC</div>
+                      <div>ME</div>
+                      <div className="text-white">1.1</div>
+                      <div className="text-white">0.9</div>
+                      <div className="text-white">0.5</div>
+                      <div className="text-white">0.7</div>
+                    </div>
+                  </div>
+                  <div className="flex justify-around">
+                    <div>Père : <span className="text-white">Galop</span></div>
+                    <div>Mère : <span className="text-white">Jeanna</span></div>
+                  </div>
+                </div>
+              </div>
+              <div className="show-more lower"><button>Afficher plus <img src={downImage} /></button></div>
             </div>
-            <div className="flex justify-end"><button>Afficher plus <span>V</span></button></div>
-          </div>
-          <div>
-            <div className="flex justify-between"><div><h1>SANTE</h1> ---------</div><div>Edit</div><div>Down</div></div>
-            <div>
-              <div>Repro<button>En gestation <span>V</span></button></div>
-              <div>Vaccins<button>A jour <span>V</span></button></div>
-              <div>Prochains traitements<span>12/05/2025</span></div>
-              <div>.</div>
-              <div>Poids<span>127 kg</span></div>
-              <div>Statut<button>En production <span>V</span></button></div>
-              <div>Dernier parage<span>3 semaines</span></div>
+            <div className="animal-category">
+              <div className="animal-header">
+                <div className="animal-title">
+                  <h1>SANTE</h1>
+                  <div className="horizontal-separator" />
+                </div>
+                <div className="animal-edit">
+                  <img src={editContrastImage} />
+                </div>
+              </div>
+              <div className="grid grid-cols-[5fr_4fr_6fr_2fr] gap-2">
+                <div className="flex gap-2">Repro :<button className="animal-button">En gestation<img src={downImage} /></button></div>
+                <div className="flex gap-2">Vaccins :<button className="animal-button">A jour<img src={downImage} /></button></div>
+                <div className="flex gap-2">Prochains traitements :<span className="animal-chip">12/05/2025</span></div>
+                <div></div>
+                <div className="flex gap-2">Statut :<button className="animal-button">En production<img src={downImage} /></button></div>
+                <div className="flex gap-2">Poids :<span className="animal-chip">127 kg</span></div>
+                <div className="flex gap-2">Dernier parage :<span className="animal-chip">3 semaines</span></div>
+              </div>
+              <div className="show-more"><button>Afficher plus <img src={downImage} /></button></div>
             </div>
-            <div className="flex justify-end"><button>Afficher plus <span>V</span></button></div>
-          </div>
-          <div>
-            <div className="flex justify-between"><div><h1>PERF'LAIT</h1> ---------</div><div>Edit</div></div>
-            <div className="flex">
-              <div>graph</div>
-              <div>graph</div>
+            <div className="animal-category">
+              <div className="animal-header">
+                <div className="animal-title">
+                  <h1>PERF'LAIT</h1>
+                  <div className="horizontal-separator" />
+                </div>
+                <div className="animal-edit">
+                  <img src={editContrastImage} />
+                </div>
+              </div>
+              <div className="flex justify-center h-50 gap-30">
+                <img src={graph3Image} />
+                <img src={graph4Image} />
+              </div>
+              <div className="show-more"><button>Afficher plus <img src={downImage} /></button></div>
             </div>
-            <div className="flex justify-end"><button>Afficher plus <span>V</span></button></div>
-          </div>
-          <div>
-            <div className="flex justify-between"><div><h1>REPRODUCTION</h1> ---------</div><div>Edit</div></div>
-            <div>
-              <div>graph</div>
+            <div className="animal-category">
+              <div className="animal-header">
+                <div className="animal-title">
+                  <h1>REPRODUCTION</h1>
+                  <div className="horizontal-separator" />
+                </div>
+                <div className="animal-edit">
+                  <img src={editContrastImage} />
+                </div>
+              </div>
+              <div className="flex justify-center h-50">
+                <img src={graph5Image} />
+              </div>
+              <div className="show-more"><button>Afficher plus <img src={downImage} /></button></div>
             </div>
-            <div className="flex justify-end"><button>Afficher plus <span>V</span></button></div>
-          </div>
-          <div className="flex justify-center">
-            <button>
-              <div>Ajouter</div>
-              <div>+</div>
-            </button>
+            <div className="flex justify-center">
+              <button className="add-button">
+                <div>Ajouter</div>
+                <img src={addImage} className="h-8 w-8"/>
+              </button>
+            </div>
           </div>
         </div>)
         : <p>Pas d'animal sélectionné</p>
