@@ -18,7 +18,7 @@ const FarmAnimal: React.FC = () => {
       { currentAnimal ? (
         <div className="flex gap-2">
           <div className="border-3 rounded-full h-10 p-2 flex justify-center items-center border-black fixed w-10">     
-            <NavLink to="/" end><img src={leftImage}/></NavLink>
+            <NavLink to="/farm/animals" end><img src={leftImage}/></NavLink>
           </div>
           <div className="w-14"></div>
           <div className="text-gray-dark font-bold flex flex-col gap-2">
