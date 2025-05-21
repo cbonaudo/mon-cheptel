@@ -1,4 +1,4 @@
-import { Gender, GestationResults, ReproductionStatus, ReproductionType, Result, type Animal, type AnimalDetails, type DashboardData } from "~/types/farm";
+import { Gender, Gestation, Lot, Status, VaccineEnum, type Animal, type AnimalDetails, type DashboardData } from "~/types/farm";
 
 export const dashboardDataSample: DashboardData = {
     "cattleNumber": 143,
@@ -8,7 +8,7 @@ export const dashboardDataSample: DashboardData = {
 }; 
 
 export const animalListSample: Animal[] = [{
-    id: "1234",
+    id: "1",
     pentagNumber: "FR123456",
     gender: 1,
     age: 1,
@@ -24,7 +24,7 @@ export const animalListSample: Animal[] = [{
     vaccine: new Date(new Date(new Date()).setMonth(new Date().getMonth() + 2)),
     parage: new Date(new Date(new Date()).setMonth(new Date().getMonth() + 2)),
 },{
-    id: "2345",
+    id: "2",
     pentagNumber: "FR234567",
     gender: 0,
     age: 3,
@@ -40,7 +40,7 @@ export const animalListSample: Animal[] = [{
     vaccine: new Date(new Date(new Date()).setMonth(new Date().getMonth() + 5)),
     parage: new Date(new Date(new Date()).setMonth(new Date().getMonth() + 5)),
 },{
-    id: "3456",
+    id: "3",
     pentagNumber: "FR345678",
     gender: 1,
     age: 4,
@@ -58,113 +58,60 @@ export const animalListSample: Animal[] = [{
 
 }];
 
-export const animalDetailsSample: AnimalDetails = {
+export const animalDetailsSample: AnimalDetails[] = [{
     id: "1234",
-    identification: {
-        pentagNumber: "123456",
-        birthdate: new Date(),
-        birthplace: "Dijon",
-        race: "Charolaise",
-        gender: 1,
-        fatherPentagNumber: "123455",
-        motherPentagNumber: "123454",
-        enteredFarmDate: new Date(),
-        exitedFarmDate: new Date()
+    name: "SAMSARAH",
+    pentagNumber: "FR561603",
+    pentagNumber2: "2526",
+    race: "Prim'holstein",
+    age: "2 ans 1 mois",
+    gender: Gender["Femelle"],
+    birthExploitation: "FR56160340",
+    lot: Lot["Lactation"],
+    birthDate: "25/05/2023",
+    father: {
+        name: "Haddock",
+        pentagNumber: "FR3256482285",
+        race: 34,
+        ISU: 125,
+        CD: 82,
+        LAIT: 939,
+        TP: -1.1,
+        TB: -4.2,
+        INEL: 30,
+        MO: 1.4,
+        MA: 1.1,
+        CC: 0.3,
+        ME: 0.5,
+        STMA: 0.8,
+        REPRO: 2.1,
+        father: "Grimpy",
+        mother: "Iroise"
     },
-    sanitary: {
-        status: {
-            mastitis: 11,
-            metabolicProblems: "metabolisme ralenti",
-            BCS: 1,
-            limping: 2
-        },
-        vaccines: [
-            {
-                type: "Covid",
-                date: new Date(),
-                veterinarian: "John Vet"
-            }
-        ],
-        veterinarianTreatments: [
-            {
-                productName: "Azorpic",
-                administrationDate: new Date(),
-                durationMonths: 10,
-                consumptionDelayMonths: 11
-            }
-        ],
-        controls: {
-            analysisResults: [{
-                type: "Grippe",
-                result: 0
-            }],
-            screenings: [{
-                type: "Covid",
-                date: new Date()
-            }]
-        },
-        veterinarianVisits: [{
-            date: new Date(),
-            vetName: "John Vet",
-            observations: "Pas d'observations particulières"
-        }]
+    mother : {
+        name: "Maya",
+        pentagNumber: "FR5634402144",
+        race: 66,
+        ISU: 121,
+        CD: 78,
+        LAIT: 841,
+        TP: -0.9,
+        TB: -3.1,
+        INEL: 23,
+        MO: 1.1,
+        MA: 0.9,
+        CC: 0.5,
+        ME: 0.7,
+        father: "Galop",
+        mother: "Jeanna"
     },
-    reproduction: {
-        general: {
-            status: 0,
-            firstInseminationDate: new Date(),
-            lactationNumber: 4
-        },
-        reproductions: [{
-            inseminationDate: new Date(),
-            type: 0,
-            genitorName: "Sarro",
-            genitorPentagNumber: "123455",
-            origin: "Bourg",
-            IANumber: 1235,
-            IAObservations: "Pas d'observations sur l'IA",
-            gestationControls: [{
-                date: new Date(),
-                results: 0,
-                daysAfterIA: 11,
-                observations: "Pas d'observations sur la gestation"
-            }],
-            postCalvingReproductionCycle: {
-                rebreedingDate: new Date(),
-                rebreedingIntensity: "régulière",
-                calvingInseminationIntervalMonths: 10,
-                calvingToCalvingIntervalMonths: 4,
-                inseminationAmount: 5,
-                reformDecision: false
-            }
-        }]
-    },
-    production: {
-        milk: {
-            dailyLiters: 30,
-            litersByLactation: 20,
-            lifetimeLiters: 3500,
-            lactationPeakLiters: 50,
-            lactationPersistence: true,
-            followUp: "pas de follow up spécifique"
-        },
-        quality: {
-            fatRating: 90,
-            proteinRating: 50,
-            somaticCells: 50,
-            ureaLevels: 10,
-            alimentaryEfficency: 5,
-            antibioticPresence: false
-        },
-        economic: {
-            alimentaryCostPerProducedLiter: 10,
-            revenue: 1000,
-            vetCharges: 100,
-            geneticValue: {
-                lacticIndex: 40,
-                reproduction: 200,
-                mammaryHealth: 100
-            }
-        }
-    }
-};
+    reproduction: Gestation["En gestation"],
+    vaccines: VaccineEnum["À jour"],
+    nextTreatment: "12/05/2025",
+    weight: "127 kg",
+    status: Status["En production"],
+    lastParage: "3 semaines",
+    vealAmount: 4,
+    detectorInstalled: false,
+    IAAttempts: 2,
+}];

@@ -5,13 +5,13 @@ import type { Animal, AnimalDetails, DashboardData } from "~/types/farm";
 
 interface FarmContextType {
   dashboardData: DashboardData | null;
-  currentAnimal: AnimalDetails | null;
+  currentAnimalList: AnimalDetails[];
   list: Animal[]
   // addAnimal: (key: keyof AnimalDetails, value: string) => void;
 }
 
 const defaultFarmContext: FarmContextType = {
-  currentAnimal: null,
+  currentAnimalList: [],
   dashboardData: null,
   list: [],
   // addAnimal: () => {},
@@ -21,11 +21,11 @@ const FarmContext = createContext<FarmContextType>(defaultFarmContext);
 
 export function FarmProvider ({ children }: { children: ReactNode })  {
   const [list, setList] = useState<Animal[]>(animalListSample);
-  const [currentAnimal, setCurrentAnimal] = useState<AnimalDetails | null>(animalDetailsSample);
+  const [currentAnimalList, setCurrentAnimalList] = useState<AnimalDetails[]>(animalDetailsSample);
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(dashboardDataSample);
 
   return (
-    <FarmContext.Provider value={{ currentAnimal, list, dashboardData }}>
+    <FarmContext.Provider value={{ currentAnimalList, list, dashboardData }}>
       {children}
     </FarmContext.Provider>
   );

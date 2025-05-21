@@ -1,17 +1,6 @@
-
 export enum Gender {
   "Mâle",
   "Femelle"
-}
-
-export enum Result {
-  "Positif",
-  "Négatif"
-}
-
-export enum ReproductionStatus {
-  "Saillie",
-  "Non Saillie"
 }
 
 export enum Echeance {
@@ -21,15 +10,14 @@ export enum Echeance {
   "1 an"
 }
 
-export enum ReproductionType {
-  "IA",
-  "Monte Naturelle",
-  "Transfert d'embryon"
+export enum Gestation {
+  "En gestation",
+  "Taureau"
 }
 
-export enum GestationResults {
-  "Gestante",
-  "Non Gestante"
+export enum VaccineEnum {
+  "À jour",
+  "À faire"
 }
 
 export enum Category {
@@ -47,132 +35,72 @@ export enum Lot {
   "Tarie"
 }
 
+export enum Status {
+  "En production"
+}
+
 export enum HealthState {
   "Sain",
   "Boiterie",
   "Écarté"
 }
 
-export type Vaccine = { 
-  type: string;
-  date: Date;
-  veterinarian: string;
-}
-
-export type VeterinarianTreatment = { 
-  productName: string, 
-  administrationDate: Date, 
-  durationMonths: number,
-  consumptionDelayMonths: number
-}
-
-export type AnalysisResult = {
-    type: string,
-    result: Result
-}
-
-
-export type Screening = {
-  type: string,
-  date: Date
-}
-
-export type VeterinarianVisits = {
-  date: Date,
-  vetName: string,
-  observations: string
-}
-
-export type GestationControl = {
-    date: Date,
-    results: GestationResults,
-    daysAfterIA: number,
-    observations: string
-}
-
-export type Reproduction = {
-    inseminationDate: Date,
-    type: ReproductionType,
-    genitorName: string,
-    genitorPentagNumber: string,
-    origin: string,
-    IANumber: number,
-    IAObservations: string,
-    gestationControls: GestationControl[],
-    postCalvingReproductionCycle: {
-        rebreedingDate: Date,
-        rebreedingIntensity: string,
-        calvingInseminationIntervalMonths: number,
-        calvingToCalvingIntervalMonths: number,
-        inseminationAmount: number,
-        reformDecision: boolean
-    },
-}
-
 export type AnimalDetails = {
-  id: string;
-  identification: {
-    pentagNumber: string,
-    birthdate: Date,
-    birthplace: string,
-    race: string,
-    gender: Gender,
-    fatherPentagNumber: string,
-    motherPentagNumber: string,
-    enteredFarmDate: Date,
-    exitedFarmDate: Date
+  id: string,
+  name: string,
+  pentagNumber: string,
+  pentagNumber2: string,
+  race: string,
+  age: string,
+  gender: Gender,
+  birthExploitation: string,
+  lot: Lot,
+  birthDate: string,
+  father: {
+      name: string,
+      pentagNumber: string,
+      race: number,
+      ISU: number,
+      CD: number,
+      LAIT: number,
+      TP: number,
+      TB: number,
+      INEL: number,
+      MO: number,
+      MA: number,
+      CC: number,
+      ME: number,
+      STMA: number,
+      REPRO: number,
+      father: string,
+      mother: string
   },
-  sanitary: {
-      status: {
-          mastitis: number,
-          metabolicProblems: string,
-          BCS: number,
-          limping: number
-      },
-      vaccines: Vaccine[],
-      veterinarianTreatments: VeterinarianTreatment[],
-      controls: {
-          analysisResults: AnalysisResult[],
-          screenings: Screening[]
-      },
-      veterinarianVisits: VeterinarianVisits[]
+  mother : {
+      name: string,
+      pentagNumber: string,
+      race: number,
+      ISU: number,
+      CD: number,
+      LAIT: number,
+      TP: number,
+      TB: number,
+      INEL: number,
+      MO: number,
+      MA: number,
+      CC: number,
+      ME: number,
+      father: string,
+      mother: string
   },
-  reproduction: {
-    general: {
-        status: ReproductionStatus,
-        firstInseminationDate: Date,
-        lactationNumber: number
-    },
-    reproductions: Reproduction[],
-  },
-  production: {
-    milk: {
-        dailyLiters: number,
-        litersByLactation: number,
-        lifetimeLiters: number,
-        lactationPeakLiters: number,
-        lactationPersistence: boolean,
-        followUp: string 
-    },
-    quality: {
-        fatRating: number,
-        proteinRating: number,
-        somaticCells: number,
-        ureaLevels: number,
-        alimentaryEfficency: number,
-        antibioticPresence: boolean 
-    },
-    economic: {
-        alimentaryCostPerProducedLiter: number,
-        revenue: number,
-        vetCharges: number,
-        geneticValue: {
-            lacticIndex: number,
-            reproduction: number,
-            mammaryHealth: number
-        }
-    }
-  }
+  reproduction: Gestation,
+  vaccines: VaccineEnum,
+  nextTreatment: string,
+  weight: string,
+  status: Status,
+  lastParage: string,
+  vealAmount: number,
+  detectorInstalled: boolean,
+  IAAttempts: number,
 };
 
 export type Animal = {

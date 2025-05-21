@@ -262,12 +262,12 @@ const FarmAnimals: React.FC = () => {
       </div>
       <div className="grid grid-cols-2 gap-8">
         {filteredList.map((animal) => (
-          <NavLink to="/farm/animal" end>
+          <NavLink to={"/farm/animal/" + animal.id} end key={animal.id}>
             <div className="animal-sheet">
               <div><img src={animal.isSelected ? checkImage : circleImage} /></div>
               <div className="flex flex-col gap-2">
                 <div>N° de boucle : <span className="font-normal">{animal.pentagNumber}</span></div>
-                <div className="grid grid-cols-[1fr_2fr] gap-2">
+                <div className="grid grid-cols-[2fr_3fr] gap-2">
                   <div>
                     Sexe : <span className="font-normal">{Gender[animal.gender]}</span>
                   </div>

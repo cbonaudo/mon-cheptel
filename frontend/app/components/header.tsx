@@ -27,7 +27,7 @@ const Header: React.FC = () => {
         <NavLink to="/farm/animals" end>
           <div className={(isAnimalsSelected ? "link-selected": "") + " link primary"}>Mes animaux</div>
         </NavLink>
-        <NavLink to="/farm/animal" end>
+        <NavLink to="/farm/animal/1" end>
           <div className={(isAnimalSelected ? "link-selected": "") + " link secondary"}>Fiche Animal</div>
         </NavLink>
       </div>

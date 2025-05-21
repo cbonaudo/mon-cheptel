@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useFarmContext } from "../contexts/farm";
 import editContrastImage from "../assets/editContrast.png";
 import addImage from "../assets/add.png"
@@ -8,11 +8,21 @@ import cowImage from "../assets/cow.png"
 import graph3Image from "../assets/graph-3.png"
 import graph4Image from "../assets/graph-4.png"
 import graph5Image from "../assets/graph-5.png"
-import { NavLink } from "react-router";
+import { NavLink, useParams } from "react-router";
+import { Gender, Gestation, Lot, Status, VaccineEnum } from "~/types/farm"; 
+import type { AnimalDetails } from "~/types/farm"; 
 
 const FarmAnimal: React.FC = () => {
-  const { currentAnimal } = useFarmContext();
+  const { currentAnimalList } = useFarmContext();
+  const { animalId } = useParams();
+  const [currentAnimal, setCurrentAnimal] = useState<AnimalDetails | null>(null);
+  useEffect(() => {
+    if (animalId && !isNaN(+animalId)) {
+      setCurrentAnimal(currentAnimalList[+animalId - 1])
+    }
+  }, [currentAnimalList, animalId]);
 
+  console.log(animalId)
   return (
     <div>
       { currentAnimal ? (
@@ -20,7 +30,7 @@ const FarmAnimal: React.FC = () => {
           <div className="border-3 rounded-full h-10 p-2 flex justify-center items-center border-black fixed w-10">     
             <NavLink to="/farm/animals" end><img src={leftImage}/></NavLink>
           </div>
-          <div className="w-14"></div>
+          <div className="w-24"></div>
           <div className="text-gray-dark font-bold flex flex-col gap-2">
             <div className="animal-category">
               <div className="animal-header">
@@ -34,15 +44,15 @@ const FarmAnimal: React.FC = () => {
               </div>
               <div>
                 <div className="grid grid-cols-[2fr_3fr_3fr_3fr] gap-2 items-center justify-center">
-                  <div className="animal-chip">SAMSARAH</div>
-                  <div>Numéro : FR561603 <span className="animal-chip">2526</span></div>
-                  <div>Race : <span className="animal-chip">Prim'holstein</span></div>
-                  <div>Âge : <span className="animal-chip">2 ans 11 mois</span></div>
+                  <div className="animal-chip">{currentAnimal.name}</div>
+                  <div>Numéro : {currentAnimal.pentagNumber} <span className="animal-chip">{currentAnimal.pentagNumber2}</span></div>
+                  <div>Race : <span className="animal-chip">{currentAnimal.race}</span></div>
+                  <div>Âge : <span className="animal-chip">{currentAnimal.age}</span></div>
                   <div className="row-span-2 rounded-full flex justify-center items-center"><img src={cowImage} /></div>
-                  <div>Sexe : <span className="animal-chip">Femelle</span></div>
-                  <div className="col-span-2">Exploitation de naissance : <span className="animal-chip">FR56160340</span></div>
-                  <div>Lot : <span className="animal-chip">En Lactation</span></div>
-                  <div className="col-span-2">Date de naissance : <span className="animal-chip">25/05/2022</span></div>
+                  <div>Sexe : <span className="animal-chip">{Gender[currentAnimal.gender]}</span></div>
+                  <div className="col-span-2">Exploitation de naissance : <span className="animal-chip">{currentAnimal.birthExploitation}</span></div>
+                  <div>Lot : <span className="animal-chip">{Lot[currentAnimal.lot]}</span></div>
+                  <div className="col-span-2">Date de naissance : <span className="animal-chip">{currentAnimal.birthDate}</span></div>
                 </div>
               </div>
               <div className="show-more"><button>Afficher plus <img src={downImage} /></button></div>
@@ -62,11 +72,11 @@ const FarmAnimal: React.FC = () => {
                   <div className="flex gap-4">
                     <div className="text-lg text-secondary">Père</div>
                     <div className="flex flex-wrap justify-center gap-2">
-                      <div>Nom : <span className="text-white">Haddock</span></div>
-                      <div>Numéro : <span className="text-white">3256482285</span></div>
-                      <div>Race : <span className="text-white">34</span></div>
-                      <div>ISU : <span className="text-white">125</span></div>
-                      <div>CD : <span className="text-white">82</span></div>
+                      <div>Nom : <span className="text-white">{currentAnimal.father.name}</span></div>
+                      <div>Numéro : <span className="text-white">{currentAnimal.father.pentagNumber}</span></div>
+                      <div>Race : <span className="text-white">{currentAnimal.father.race}</span></div>
+                      <div>ISU : <span className="text-white">{currentAnimal.father.ISU}</span></div>
+                      <div>CD : <span className="text-white">{currentAnimal.father.CD}</span></div>
                     </div>
                   </div>
                   <div className="flex gap-2">
@@ -75,10 +85,10 @@ const FarmAnimal: React.FC = () => {
                       <div>TP</div>
                       <div>TB</div>
                       <div>INEL</div>
-                      <div className="text-white">939</div>
-                      <div className="text-white">-1.1</div>
-                      <div className="text-white">-4.2</div>
-                      <div className="text-white">30</div>
+                      <div className="text-white">{currentAnimal.father.LAIT}</div>
+                      <div className="text-white">{currentAnimal.father.TP}</div>
+                      <div className="text-white">{currentAnimal.father.TB}</div>
+                      <div className="text-white">{currentAnimal.father.INEL}</div>
                     </div>
                     <div className="flex justify-center grow">
                       <div className="vertical-separator"/>                
@@ -88,10 +98,10 @@ const FarmAnimal: React.FC = () => {
                       <div>MA</div>
                       <div>CC</div>
                       <div>ME</div>
-                      <div className="text-white">1.4</div>
-                      <div className="text-white">1.1</div>
-                      <div className="text-white">0.3</div>
-                      <div className="text-white">0.5</div>
+                      <div className="text-white">{currentAnimal.father.MO}</div>
+                      <div className="text-white">{currentAnimal.father.MA}</div>
+                      <div className="text-white">{currentAnimal.father.CC}</div>
+                      <div className="text-white">{currentAnimal.father.ME}</div>
                     </div>
                     <div className="flex justify-center grow">
                       <div className="vertical-separator"/>                
@@ -99,13 +109,13 @@ const FarmAnimal: React.FC = () => {
                     <div className="grid grid-cols-2 gap-2 array">
                       <div>STMA</div>
                       <div>REPRO</div>
-                      <div className="text-white">0.8</div>
-                      <div className="text-white">2.1</div>
+                      <div className="text-white">{currentAnimal.father.STMA}</div>
+                      <div className="text-white">{currentAnimal.father.REPRO}</div>
                     </div>
                   </div>
                   <div className="flex justify-around">
-                    <div>Père : <span className="text-white">Grimpy</span></div>
-                    <div>Mère : <span className="text-white">Iroise</span></div>
+                    <div>Père : <span className="text-white">{currentAnimal.father.father}</span></div>
+                    <div>Mère : <span className="text-white">{currentAnimal.father.mother}</span></div>
                   </div>
                 </div>
                 <div className="flex justify-center grow">
@@ -115,17 +125,17 @@ const FarmAnimal: React.FC = () => {
                   <div className="flex gap-4">
                     <div className="text-lg text-secondary">Mère</div>
                     <div className="flex flex-wrap justify-center gap-2 w-80">
-                      <div>Nom : <span className="text-white">Maya</span></div>
-                      <div>Numéro : <span className="text-white">5634402144</span></div>
-                      <div>Race : <span className="text-white">66</span></div>
+                      <div>Nom : <span className="text-white">{currentAnimal.mother.name}</span></div>
+                      <div>Numéro : <span className="text-white">{currentAnimal.mother.pentagNumber}</span></div>
+                      <div>Race : <span className="text-white">{currentAnimal.mother.race}</span></div>
                     </div>
                   </div>
                   <div className="flex gap-2">
                     <div className="grid grid-cols-2 gap-1 array">
                       <div>ISU</div>
                       <div>CD</div>
-                      <div className="text-white">121</div>
-                      <div className="text-white">78</div>
+                      <div className="text-white">{currentAnimal.mother.ISU}</div>
+                      <div className="text-white">{currentAnimal.mother.CD}</div>
                     </div>
                     <div className="flex justify-center grow">
                       <div className="vertical-separator"/>                
@@ -135,10 +145,10 @@ const FarmAnimal: React.FC = () => {
                       <div>TP</div>
                       <div>TB</div>
                       <div>INEL</div>
-                      <div className="text-white">841</div>
-                      <div className="text-white">-0.9</div>
-                      <div className="text-white">-3.1</div>
-                      <div className="text-white">23</div>
+                      <div className="text-white">{currentAnimal.mother.LAIT}</div>
+                      <div className="text-white">{currentAnimal.mother.TP}</div>
+                      <div className="text-white">{currentAnimal.mother.TB}</div>
+                      <div className="text-white">{currentAnimal.mother.INEL}</div>
                     </div>
                     <div className="flex justify-center grow">
                       <div className="vertical-separator"/>                
@@ -148,15 +158,15 @@ const FarmAnimal: React.FC = () => {
                       <div>MA</div>
                       <div>CC</div>
                       <div>ME</div>
-                      <div className="text-white">1.1</div>
-                      <div className="text-white">0.9</div>
-                      <div className="text-white">0.5</div>
-                      <div className="text-white">0.7</div>
+                      <div className="text-white">{currentAnimal.mother.MO}</div>
+                      <div className="text-white">{currentAnimal.mother.MA}</div>
+                      <div className="text-white">{currentAnimal.mother.CC}</div>
+                      <div className="text-white">{currentAnimal.mother.ME}</div>
                     </div>
                   </div>
                   <div className="flex justify-around">
-                    <div>Père : <span className="text-white">Galop</span></div>
-                    <div>Mère : <span className="text-white">Jeanna</span></div>
+                    <div>Père : <span className="text-white">{currentAnimal.mother.father}</span></div>
+                    <div>Mère : <span className="text-white">{currentAnimal.mother.mother}</span></div>
                   </div>
                 </div>
               </div>
@@ -173,13 +183,13 @@ const FarmAnimal: React.FC = () => {
                 </div>
               </div>
               <div className="grid grid-cols-[5fr_4fr_6fr_2fr] gap-2">
-                <div className="flex gap-2 items-center">Repro :<button className="animal-chip">En gestation</button></div>
-                <div className="flex gap-2 items-center">Vaccins :<button className="animal-chip">A jour</button></div>
-                <div className="flex gap-2 items-center">Prochains traitements :<span className="animal-chip">12/05/2025</span></div>
+                <div className="flex gap-2 items-center">Repro :<button className="animal-chip">{Gestation[currentAnimal.reproduction]}</button></div>
+                <div className="flex gap-2 items-center">Vaccins :<button className="animal-chip">{VaccineEnum[currentAnimal.vaccines]}</button></div>
+                <div className="flex gap-2 items-center">Prochains traitements :<span className="animal-chip">{currentAnimal.nextTreatment}</span></div>
                 <div></div>
-                <div className="flex gap-2 items-center">Statut :<button className="animal-chip">En production</button></div>
-                <div className="flex gap-2 items-center">Poids :<span className="animal-chip">127 kg</span></div>
-                <div className="flex gap-2 items-center">Dernier parage :<span className="animal-chip">3 semaines</span></div>
+                <div className="flex gap-2 items-center">Statut :<button className="animal-chip">{Status[currentAnimal.status]}</button></div>
+                <div className="flex gap-2 items-center">Poids :<span className="animal-chip">{currentAnimal.weight}</span></div>
+                <div className="flex gap-2 items-center">Dernier parage :<span className="animal-chip">{currentAnimal.lastParage}</span></div>
               </div>
               <div className="show-more"><button>Afficher plus <img src={downImage} /></button></div>
             </div>
@@ -223,10 +233,13 @@ const FarmAnimal: React.FC = () => {
                 </div>
               </div>
               <div className="grid grid-cols-[2fr_3fr] gap-6 m-4">
-                <div>Etat: <span className="animal-chip">En gestation</span> <span className="animal-chip disabled">Taureau</span></div>
-                <div>Nombre de veaux: <span className="animal-chip">4</span></div>
-                <div>Détecteur installé: <span className="animal-chip gray">Oui</span> <span className="animal-chip">Non</span></div>
-                <div>Tentatives IA: <span className="animal-chip">2</span></div>
+                <div className="flex gap-2 items-center">Etat: <span className="animal-chip">{Gestation[currentAnimal.reproduction]}</span> <span className="animal-chip disabled">Taureau</span></div>
+                <div className="flex gap-2 items-center">Nombre de veaux: <span className="animal-chip">{currentAnimal.vealAmount}</span></div>
+                <div className="flex gap-2 items-center">Détecteur installé: 
+                  <span className={currentAnimal.detectorInstalled ? "animal-chip" : "animal-chip gray"}>Oui</span>
+                  <span className={currentAnimal.detectorInstalled ? "animal-chip gray" : "animal-chip"}>Non</span>
+                </div>
+                <div className="flex gap-2 items-center">Tentatives IA: <span className="animal-chip">{currentAnimal.IAAttempts}</span></div>
               </div>
               <div className="show-more"><button>Afficher plus <img src={downImage} /></button></div>
             </div>
