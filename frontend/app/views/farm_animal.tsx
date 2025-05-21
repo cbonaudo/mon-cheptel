@@ -35,13 +35,13 @@ const FarmAnimal: React.FC = () => {
               <div>
                 <div className="grid grid-cols-[2fr_3fr_3fr_3fr] gap-2 items-center justify-center">
                   <div className="animal-chip">SAMSARAH</div>
-                  <div>Numéro : 561603 <span className="animal-chip">2526</span></div>
+                  <div>Numéro : FR561603 <span className="animal-chip">2526</span></div>
                   <div>Race : <span className="animal-chip">Prim'holstein</span></div>
                   <div>Âge : <span className="animal-chip">2 ans 11 mois</span></div>
                   <div className="row-span-2 rounded-full flex justify-center items-center"><img src={cowImage} /></div>
                   <div>Sexe : <span className="animal-chip">Femelle</span></div>
-                  <div className="col-span-2">Exploitation de naissance : <span className="animal-chip">56160340</span></div>
-                  <div>Lot : <span className="animal-chip">Lactation</span></div>
+                  <div className="col-span-2">Exploitation de naissance : <span className="animal-chip">FR56160340</span></div>
+                  <div>Lot : <span className="animal-chip">En Lactation</span></div>
                   <div className="col-span-2">Date de naissance : <span className="animal-chip">25/05/2022</span></div>
                 </div>
               </div>
@@ -173,13 +173,13 @@ const FarmAnimal: React.FC = () => {
                 </div>
               </div>
               <div className="grid grid-cols-[5fr_4fr_6fr_2fr] gap-2">
-                <div className="flex gap-2">Repro :<button className="animal-button">En gestation<img src={downImage} /></button></div>
-                <div className="flex gap-2">Vaccins :<button className="animal-button">A jour<img src={downImage} /></button></div>
-                <div className="flex gap-2">Prochains traitements :<span className="animal-chip">12/05/2025</span></div>
+                <div className="flex gap-2 items-center">Repro :<button className="animal-chip">En gestation</button></div>
+                <div className="flex gap-2 items-center">Vaccins :<button className="animal-chip">A jour</button></div>
+                <div className="flex gap-2 items-center">Prochains traitements :<span className="animal-chip">12/05/2025</span></div>
                 <div></div>
-                <div className="flex gap-2">Statut :<button className="animal-button">En production<img src={downImage} /></button></div>
-                <div className="flex gap-2">Poids :<span className="animal-chip">127 kg</span></div>
-                <div className="flex gap-2">Dernier parage :<span className="animal-chip">3 semaines</span></div>
+                <div className="flex gap-2 items-center">Statut :<button className="animal-chip">En production</button></div>
+                <div className="flex gap-2 items-center">Poids :<span className="animal-chip">127 kg</span></div>
+                <div className="flex gap-2 items-center">Dernier parage :<span className="animal-chip">3 semaines</span></div>
               </div>
               <div className="show-more"><button>Afficher plus <img src={downImage} /></button></div>
             </div>
@@ -193,11 +193,24 @@ const FarmAnimal: React.FC = () => {
                   <img src={editContrastImage} />
                 </div>
               </div>
-              <div className="flex justify-center h-50 gap-30">
-                <img src={graph3Image} />
-                <img src={graph4Image} />
+              <div className="grid grid-cols-[5fr_5fr_6fr] justify-center gap-8 text-sm">
+                <div className="h-50 flex flex-col items-center gap-1">
+                  <img src={graph3Image} className="rounded-xl" />
+                  <div className="text-error-light">35,7 kg</div>
+                  <div>Moy : 35,2 kg</div>
+                </div>
+                <div className="h-50 flex flex-col items-center gap-1">
+                  <img src={graph4Image} className="rounded-xl" />
+                  <div className="text-error-light">Prot : 3,6%  I MG : 4,1%</div>
+                  <div>Moy : 3,3% I 3,9%</div>
+                </div>
+                <div className="h-50 flex flex-col items-center gap-1">
+                  <img src={graph5Image} className="rounded-xl" />
+                  <div className="text-error-light">4 refus</div>
+                  <div>Moy : 3,5 refus</div>
+                </div>
               </div>
-              <div className="show-more"><button>Afficher plus <img src={downImage} /></button></div>
+              <div className="show-more lowerer"><button>Afficher plus <img src={downImage} /></button></div>
             </div>
             <div className="animal-category">
               <div className="animal-header">
@@ -209,8 +222,11 @@ const FarmAnimal: React.FC = () => {
                   <img src={editContrastImage} />
                 </div>
               </div>
-              <div className="flex justify-center h-50">
-                <img src={graph5Image} />
+              <div className="grid grid-cols-[2fr_3fr] gap-6 m-4">
+                <div>Etat: <span className="animal-chip">En gestation</span> <span className="animal-chip disabled">Taureau</span></div>
+                <div>Nombre de veaux: <span className="animal-chip">4</span></div>
+                <div>Détecteur installé: <span className="animal-chip gray">Oui</span> <span className="animal-chip">Non</span></div>
+                <div>Tentatives IA: <span className="animal-chip">2</span></div>
               </div>
               <div className="show-more"><button>Afficher plus <img src={downImage} /></button></div>
             </div>

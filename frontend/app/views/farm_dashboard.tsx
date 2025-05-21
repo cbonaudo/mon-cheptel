@@ -4,6 +4,11 @@ import editImage from "../assets/edit.png";
 import notifsImage from "../assets/notifs.png";
 import addImage from "../assets/add.png";
 import downImage from "../assets/down.png";
+import crossImage from "../assets/cancel.png";
+import crossOrangeImage from "../assets/cancel-orange.png";
+import crossCyanImage from "../assets/cancel-cyan.png";
+import crossSecondaryImage from "../assets/cancel-secondary.png";
+import crossPrimaryImage from "../assets/cancel-primary.png";
 
 const FarmDashboard: React.FC = () => {
   return (
@@ -58,19 +63,19 @@ const FarmDashboard: React.FC = () => {
                 <div>
                   {'11'}
                 </div>
-                <span className="chip-selected">
+                <span className="chip-selected error">
                   Sous antibio
                 </span>
               </div>
               <div className="chip">
                 {'14'}
-                <span className="chip-selected">
+                <span className="chip-selected good">
                   Période Colostrum
                 </span>
               </div>
               <div className="chip">
                 {'19'}
-                <span className="chip-selected">
+                <span className="chip-selected warning">
                   Taries
                 </span>
               </div>
@@ -119,6 +124,7 @@ const FarmDashboard: React.FC = () => {
                 <div>9h00</div>
                 <div>15/02/25</div>
               </div>
+              <img src={crossOrangeImage}/>
             </div>
             <div className="alert tertiary">
               <div>Traitement en cours à vérifier</div>
@@ -126,12 +132,14 @@ const FarmDashboard: React.FC = () => {
                 <div>Toute la journée</div>
                 <div>30/02/25</div>
               </div>
+              <img src={crossCyanImage}/>
             </div>
             <div className="alert gray">
               <div>15 en perte de performance (-2L/j)</div>
               <div>
                 <div>au 10/02/25</div>
               </div>
+              <img src={crossImage}/>
             </div>
             <div className="alert primary">
               <div>Déclaration PAC J-2</div>
@@ -139,14 +147,18 @@ const FarmDashboard: React.FC = () => {
                 <div>Toute la journée</div>
                 <div>28/02/25</div>
               </div>
+              <img src={crossPrimaryImage}/>
             </div>
             <div className="alert secondary">
-              <div>Dernier prélèvement tank</div>
-              <div className="flex gap-2">
-                <div>6312 L</div>
-                <div>|</div>
-                <div>Jours de production : 3</div>
+              <div className="flex flex-col">
+                <div>Dernier prélèvement tank</div>
+                <div className="flex gap-2">
+                  <div>6312 L</div>
+                  <div>|</div>
+                  <div>Jours de production : 3</div>
+                </div>
               </div>
+              <img src={crossSecondaryImage}/>
             </div>
           </div>
         </div>

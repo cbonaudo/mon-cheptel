@@ -37,6 +37,11 @@ body {
   --color-gray: oklch(0.8 0 0);
   --color-gray-light: oklch(0.93 0.0011 197.14);
   --color-gray-dark: oklch(0.57 0.025 274.45);
+
+  --color-error: oklch(0.41 0.1507 27.06);
+  --color-error-light: oklch(0.6846 0.2042 24.28);
+  --color-error-dark: oklch(0.29 0.1158 28.73);
+  --color-good: oklch(0.62 0.1274 154.95);
 }
 
 h1, h2 {
@@ -65,14 +70,29 @@ button {
 .chip {
   @apply grid grid-cols-[1fr_7fr] gap-2 text-center;
 }
+.chip span {
+  @apply border-4 box-border border-secondary;
+}
 .chip-selected {
   @apply text-neutral-50 font-bold bg-secondary-light rounded-full text-sm flex justify-center p-1 pr-2 pl-2;
+  font-size: 12px;
+}
+.chip-selected.error {
+  @apply bg-error border-error-dark;
+}
+.chip-selected.warning {
+  @apply bg-contrast border-contrast-dark;
+}
+.chip-selected.good {
+  @apply bg-good border-primary;
 }
 .chip-unselected {
   @apply text-neutral-50 font-bold bg-primary-light rounded-full text-sm flex justify-center p-1 pr-2 pl-2;
+  font-size: 12px;
 }
 .chip-disabled {
   @apply text-neutral-50 font-bold bg-gray-dark rounded-full text-sm flex justify-center p-1 pr-2 pl-2;
+  font-size: 12px;
 }
 
 .toggle-light {

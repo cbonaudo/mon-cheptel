@@ -32,12 +32,21 @@
 .show-more.lower {
     @apply flex justify-end text-white -mt-2;
 }
+.show-more.lowerer {
+    @apply flex justify-end text-white mt-2;
+}
 .show-more > button {
     @apply bg-secondary p-1 pl-4 rounded-lg text-sm flex justify-center;
 }
 
 .animal-chip {
-    @apply text-neutral-50 font-bold bg-primary rounded-full p-1 pl-6 pr-6 w-fit h-fit;
+    @apply text-neutral-50 font-bold bg-primary rounded-full p-2 pl-6 pr-6 w-fit h-fit;
+}
+.animal-chip.gray{
+    @apply bg-gray-dark;
+}
+.animal-chip.disabled{
+    @apply bg-primary-light;
 }
 .animal-button {
     @apply text-neutral-50 font-bold bg-primary rounded-full p-1 pl-6 pr-2 w-fit h-fit flex justify-center;

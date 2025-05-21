@@ -22,7 +22,7 @@ const Header: React.FC = () => {
       </div>
       <div className="flex text-white justify-around">
         <NavLink to="/" end>
-          <div className={(isDashboardSelected ? "link-selected": "") + " link primary-light"}>Tableau de Bord</div>
+          <div className={(isDashboardSelected ? "link-selected gray": "") + " link primary-light"}>Tableau de Bord</div>
         </NavLink>
         <NavLink to="/farm/animals" end>
           <div className={(isAnimalsSelected ? "link-selected": "") + " link primary"}>Mes animaux</div>

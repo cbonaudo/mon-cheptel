@@ -20,13 +20,18 @@
 }
 
 .alert {
-    @apply border-4 justify-center items-center p-4 rounded-full text-xs grid grid-cols-[3fr_1fr] gap-1;
+    @apply border-4 justify-center items-center pl-4 pt-4 pb-4 pr-1 rounded-full text-xs grid grid-cols-[6fr_3fr_1fr] gap-1;
+}
+.alert img {
+    height: 24px;
+    width: 24px;
+    margin-right: -20px;
 }
 .alert.primary {
     @apply border-primary bg-primary-light text-primary;
 }
 .alert.secondary {
-    @apply border-secondary bg-secondary-light text-secondary flex flex-col;
+    @apply border-secondary bg-secondary-light text-secondary grid-cols-[7fr_1fr];
 }
 .alert.tertiary {
     @apply border-tertiary bg-tertiary-light text-tertiary;
@@ -39,6 +44,6 @@
 }
 
 .button-light {
-    @apply bg-gray text-gray-dark flex justify-center items-center  rounded-full p-2 w-50;
+    @apply bg-gray text-gray-dark flex justify-center items-center rounded-full p-2 w-50;
 }
   

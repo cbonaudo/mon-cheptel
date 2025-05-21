@@ -15,6 +15,9 @@
 .link.link-selected {
     @apply border-6 box-border z-100;
 }
+.link.link-selected.gray {
+    @apply border-gray-dark text-gray-dark;
+}
 .link:not(.link-selected) {
     @apply pt-5.5;
 }

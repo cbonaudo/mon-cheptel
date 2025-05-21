@@ -14,6 +14,13 @@ export enum ReproductionStatus {
   "Non Saillie"
 }
 
+export enum Echeance {
+  "A définir",
+  "3 mois",
+  "6 mois",
+  "1 an"
+}
+
 export enum ReproductionType {
   "IA",
   "Monte Naturelle",
@@ -23,6 +30,27 @@ export enum ReproductionType {
 export enum GestationResults {
   "Gestante",
   "Non Gestante"
+}
+
+export enum Category {
+  "Veau",
+  "Génisse",
+  "Vache",
+  "Taureau",
+  "Taurillon"
+}
+
+export enum Lot {
+  "Lactation",
+  "Prépa Vêlage",
+  "Vêlée",
+  "Tarie"
+}
+
+export enum HealthState {
+  "Sain",
+  "Boiterie",
+  "Écarté"
 }
 
 export type Vaccine = { 
@@ -157,6 +185,12 @@ export type Animal = {
   fatherPentagNumber: string;
   motherPentagNumber: string;
   sanitaryStatus: string;
+  bornIn: boolean,
+  category: Category,
+  lot: Lot,
+  healthState: HealthState,
+  vaccine: Date,
+  parage: Date,
 }
 
 export type DashboardData = {

@@ -24,10 +24,6 @@ export function FarmProvider ({ children }: { children: ReactNode })  {
   const [currentAnimal, setCurrentAnimal] = useState<AnimalDetails | null>(animalDetailsSample);
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(dashboardDataSample);
 
-  // const addAnimal = (form: AnimalForm) => {
-  //   setList((list) => ([...list]));
-  // };
-
   return (
     <FarmContext.Provider value={{ currentAnimal, list, dashboardData }}>
       {children}
