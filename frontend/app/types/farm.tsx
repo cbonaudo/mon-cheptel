@@ -32,17 +32,33 @@ export enum Lot {
   "Lactation",
   "Prépa Vêlage",
   "Vêlée",
-  "Tarie"
+  "Tarie",
+  "Croissance"
 }
 
 export enum Status {
-  "En production"
+  "En production",
+  "Lait à écarter",
+  "Hors production"
+}
+
+export enum Race {
+  "Normande",
+  "Prim'Holstein",
+  "Brune",
+  "Montbéliarde"
 }
 
 export enum HealthState {
   "Sain",
   "Boiterie",
   "Écarté"
+}
+
+export enum Appetite {
+  "Normal",
+  "Réduit",
+  "Absent"
 }
 
 export type AnimalDetails = {
@@ -97,28 +113,34 @@ export type AnimalDetails = {
   nextTreatment: string,
   weight: string,
   status: Status,
+  healthState: HealthState,
   lastParage: string,
+  vaccine: Date,
+  parage: Date,
+  appetite: Appetite,
   vealAmount: number,
   detectorInstalled: boolean,
   IAAttempts: number,
 };
 
 export type Animal = {
-  isSelected: boolean;
   id: string;
   pentagNumber: string;
+  boucle: string;
   gender: Gender;
   age: number;
-  race: string;
+  race: Race;
   fatherPentagNumber: string;
   motherPentagNumber: string;
-  sanitaryStatus: string;
+  sanitaryStatus: Status;
   bornIn: boolean,
   category: Category,
-  lot: Lot,
+  lot?: Lot,
   healthState: HealthState,
-  vaccine: Date,
-  parage: Date,
+  vaccine: VaccineEnum,
+  vaccineEcheance: string,
+  parage: VaccineEnum,
+  parageEcheance: string,
 }
 
 export type DashboardData = {

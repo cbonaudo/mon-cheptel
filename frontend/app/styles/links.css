@@ -13,7 +13,7 @@
 }
 
 .link.link-selected {
-    @apply border-6 box-border z-100;
+    @apply border-6 box-border z-30;
 }
 .link.link-selected.gray {
     @apply border-gray-dark text-gray-dark;

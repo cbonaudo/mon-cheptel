@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useFarmContext } from "../contexts/farm";
-import { Category, Echeance, Gender, HealthState, Lot } from "~/types/farm";
+import { Category, Echeance, Gender, HealthState, Lot, Race, VaccineEnum } from "~/types/farm";
 import { NavLink } from "react-router";
 import leftImage from "../assets/left.png";
 import downImage from "../assets/down.png";
 import refreshImage from "../assets/refresh.png";
-import circleImage from "../assets/circle.png";
-import checkImage from "../assets/check.png";
 import rightGrayImage from "../assets/rightGray.png";
 
 const FarmAnimals: React.FC = () => {
@@ -17,7 +15,7 @@ const FarmAnimals: React.FC = () => {
     setFilteredList(list);
   }, [list]);
   
-  const [pentagFilter, setPentagFilter] = useState<null | string>(null);
+  const [boucleFilter, setBoucleFilter] = useState<null | string>(null);
   const [genderFilter, setGenderFilter] = useState<null | Gender>(null);
   const [bornInFilter, setBornInFilter] = useState<null | boolean>(null);
   const [categoryFilter, setCategoryFilter] = useState<null | Category>(null);
@@ -30,8 +28,8 @@ const FarmAnimals: React.FC = () => {
 
   useEffect(() => {
     let newFilteredList = [...list];
-    if (pentagFilter) {
-      newFilteredList = newFilteredList.filter((a) => a.pentagNumber.includes(pentagFilter));
+    if (boucleFilter) {
+      newFilteredList = newFilteredList.filter((a) => a.boucle.includes(boucleFilter));
     }
     if (genderFilter != null) {
       newFilteredList = newFilteredList.filter((a) => a.gender == genderFilter);
@@ -39,7 +37,7 @@ const FarmAnimals: React.FC = () => {
         setCategoryFilter(Category["Génisse"]);
       } else if (genderFilter == Gender["Femelle"] && (categoryFilter == Category["Taureau"])) {
         setCategoryFilter(Category["Vache"]);
-      }else if (genderFilter == Gender["Mâle"] && (categoryFilter == Category["Génisse"])) {
+      } else if (genderFilter == Gender["Mâle"] && (categoryFilter == Category["Génisse"])) {
         setCategoryFilter(Category["Taurillon"]);
       } else if (genderFilter == Gender["Mâle"] && (categoryFilter == Category["Vache"])) {
         setCategoryFilter(Category["Taureau"]);
@@ -52,74 +50,76 @@ const FarmAnimals: React.FC = () => {
       newFilteredList = newFilteredList.filter((a) => a.category == categoryFilter);
     }
     if (lotFilter != null) {
-      newFilteredList = newFilteredList.filter((a) => a.lot == lotFilter);
+      newFilteredList = newFilteredList.filter((a) => a.hasOwnProperty("lot") && a.lot == lotFilter);
     }
     if (healthStateFilter != null) {
       newFilteredList = newFilteredList.filter((a) => a.healthState == healthStateFilter);
     }
-    if (vaccineFilter != null && vaccineDeadlineFilter != 0) {
-      const date = new Date();
-      newFilteredList = newFilteredList.filter((a) => {
-        if (vaccineFilter === true) {
-          if (vaccineDeadlineFilter == 1) {
-            // return true if vaccine is in more than 3 months
-            return new Date(new Date(date).setMonth(date.getMonth() + 3)) < (a.vaccine);
-          } else if (vaccineDeadlineFilter == 2) {
-            // return true if vaccine is in more than 6 months
-            return new Date(new Date(date).setMonth(date.getMonth() + 6)) < (a.vaccine);
-          } else if (vaccineDeadlineFilter == 3) {
-            // return true if vaccine is in more than 12 months
-            return new Date(new Date(date).setMonth(date.getMonth() + 12)) < (a.vaccine);
-          }
-        } else if (vaccineFilter === false) {
-          if (vaccineDeadlineFilter == 1) {
-            // return false if vaccine is in more than 3 months
-            return new Date(new Date(date).setMonth(date.getMonth() + 3)) > (a.vaccine);
-          } else if (vaccineDeadlineFilter == 2) {
-            // return false if vaccine is in more than 6 months
-            return new Date(new Date(date).setMonth(date.getMonth() + 6)) > (a.vaccine);
-          } else if (vaccineDeadlineFilter == 3) {
-            // return false if vaccine is in more than 12 months
-            return new Date(new Date(date).setMonth(date.getMonth() + 12)) > (a.vaccine);
-          }
-        }
-      });
+    if (vaccineFilter != null) {
+      newFilteredList = newFilteredList.filter((a) => VaccineEnum[a.vaccine] == VaccineEnum[+!vaccineFilter]);
     }
-    if (parageFilter != null && parageDeadlineFilter != 0) {
-      const date = new Date();
-      newFilteredList = newFilteredList.filter((a) => {
-        if (parageFilter === true) {
-          if (parageDeadlineFilter == 1) {
-            // return true if parage is in more than 3 months
-            return new Date(new Date(date).setMonth(date.getMonth() + 3)) < (a.parage);
-          } else if (parageDeadlineFilter == 2) {
-            // return true if parage is in more than 6 months
-            return new Date(new Date(date).setMonth(date.getMonth() + 6)) < (a.parage);
-          } else if (parageDeadlineFilter == 3) {
-            // return true if parage is in more than 12 months
-            return new Date(new Date(date).setMonth(date.getMonth() + 12)) < (a.parage);
-          }
-        } else if (parageFilter === false) {
-          if (parageDeadlineFilter == 1) {
-            // return false if parage is in more than 3 months
-            return new Date(new Date(new Date()).setMonth(new Date().getMonth() + 3)) > (a.parage);
-          } else if (parageDeadlineFilter == 2) {
-            // return false if parage is in more than 6 months
-            return new Date(new Date(new Date()).setMonth(new Date().getMonth() + 6)) > (a.parage);
-          } else if (parageDeadlineFilter == 3) {
-            // return false if parage is in more than 12 months
-            return new Date(new Date(new Date()).setMonth(new Date().getMonth() + 12)) > (a.parage);
-          }
-        }
-      });
+    if (vaccineDeadlineFilter > Echeance["A définir"]) {
+      let date = new Date();
+      if (vaccineDeadlineFilter == Echeance["3 mois"]) {
+        newFilteredList = newFilteredList.filter((a) => {
+          return new Date(
+            Number(a.vaccineEcheance.substring(6,10)), 
+            Number(a.vaccineEcheance.substring(3,5)) - 1, 
+            Number(a.vaccineEcheance.substring(0,2))) 
+            < new Date(new Date(date).setMonth(date.getMonth() + 3))
+        });
+      } else if (vaccineDeadlineFilter == Echeance["6 mois"]) {
+        newFilteredList = newFilteredList.filter((a) => {
+          return new Date(
+            Number(a.vaccineEcheance.substring(6,10)), 
+            Number(a.vaccineEcheance.substring(3,5)) - 1, 
+            Number(a.vaccineEcheance.substring(0,2))) 
+            < new Date(new Date(date).setMonth(date.getMonth() + 6))
+        });} else if (vaccineDeadlineFilter == Echeance["1 an"]) {
+        newFilteredList = newFilteredList.filter((a) => {
+          return new Date(
+            Number(a.vaccineEcheance.substring(6,10)), 
+            Number(a.vaccineEcheance.substring(3,5)) - 1, 
+            Number(a.vaccineEcheance.substring(0,2))) 
+            < new Date(new Date(date).setMonth(date.getMonth() + 12))
+        });}
+    }
+    if (parageFilter != null) {
+      newFilteredList = newFilteredList.filter((a) => VaccineEnum[a.parage] == VaccineEnum[+!parageFilter]);
+    }
+    if (parageDeadlineFilter > Echeance["A définir"]) {
+      let date = new Date();
+      if (parageDeadlineFilter == Echeance["3 mois"]) {
+        newFilteredList = newFilteredList.filter((a) => {
+          return new Date(
+            Number(a.parageEcheance.substring(6,10)), 
+            Number(a.parageEcheance.substring(3,5)) - 1, 
+            Number(a.parageEcheance.substring(0,2))) 
+            < new Date(new Date(date).setMonth(date.getMonth() + 3))
+        });
+      } else if (parageDeadlineFilter == Echeance["6 mois"]) {
+        newFilteredList = newFilteredList.filter((a) => {
+          return new Date(
+            Number(a.parageEcheance.substring(6,10)), 
+            Number(a.parageEcheance.substring(3,5)) - 1, 
+            Number(a.parageEcheance.substring(0,2))) 
+            < new Date(new Date(date).setMonth(date.getMonth() + 6))
+        });} else if (parageDeadlineFilter == Echeance["1 an"]) {
+        newFilteredList = newFilteredList.filter((a) => {
+          return new Date(
+            Number(a.parageEcheance.substring(6,10)), 
+            Number(a.parageEcheance.substring(3,5)) - 1, 
+            Number(a.parageEcheance.substring(0,2))) 
+            < new Date(new Date(date).setMonth(date.getMonth() + 12))
+        });}
     }
     setFilteredList(newFilteredList);
-  }, [pentagFilter, genderFilter, bornInFilter, categoryFilter, 
+  }, [boucleFilter, genderFilter, bornInFilter, categoryFilter, 
     lotFilter, healthStateFilter, vaccineFilter, vaccineDeadlineFilter, 
     parageFilter, parageDeadlineFilter]);
 
   const resetFilter = () => {
-    setPentagFilter(null);
+    setBoucleFilter(null);
     setGenderFilter(null);
     setBornInFilter(null);
     setCategoryFilter(null);
@@ -143,7 +143,7 @@ const FarmAnimals: React.FC = () => {
             <div className="flex gap-2">
               <div className="flex gap-1 items-center">
                 Numéro : 
-                <input className="input" placeholder="Ex: 2884" value={pentagFilter || ""} onChange={(e) => setPentagFilter(e.target.value)}/>
+                <input className="input" placeholder="Ex: 2884" value={boucleFilter || ""} onChange={(e) => setBoucleFilter(e.target.value)}/>
               </div>
               <div className="flex gap-1 items-center">
                 Sexe : 
@@ -262,17 +262,17 @@ const FarmAnimals: React.FC = () => {
       </div>
       <div className="grid grid-cols-2 gap-8">
         {filteredList.map((animal) => (
-          <NavLink to={"/farm/animal/" + animal.id} end key={animal.id}>
+          <NavLink to={"/farm/animal/1"} end key={animal.id}>
             <div className="animal-sheet">
-              <div><img src={animal.isSelected ? checkImage : circleImage} /></div>
+              <div></div>
               <div className="flex flex-col gap-2">
-                <div>N° de boucle : <span className="font-normal">{animal.pentagNumber}</span></div>
+                <div>N° de boucle : <span className="font-normal">{animal.boucle}</span></div>
                 <div className="grid grid-cols-[2fr_3fr] gap-2">
                   <div>
                     Sexe : <span className="font-normal">{Gender[animal.gender]}</span>
                   </div>
                   <div>
-                    Age : <span className="font-normal">{animal.age}</span>
+                    Age : <span className="font-normal">{animal.age} mois</span>
                   </div>
                   <div>
                     Père : <span className="font-normal">{animal.fatherPentagNumber}</span>
@@ -281,11 +281,11 @@ const FarmAnimals: React.FC = () => {
                     Mère : <span className="font-normal">{animal.motherPentagNumber}</span>
                   </div>
                   <div>
-                    Race : <span className="font-normal">{animal.race}</span>
+                    Race : <span className="font-normal">{Race[animal.race]}</span>
                   </div>
-                  <div>
-                    Lot : <span className="font-normal">{Lot[animal.lot]}</span>
-                  </div>
+                  {animal.hasOwnProperty("lot") && (<div>
+                    Lot : <span className="font-normal">{Lot[animal.lot!]}</span>
+                  </div>)}
                 </div>
                 <div className="self-end text-gray flex">
                   Afficher plus <img src={rightGrayImage} />

@@ -11,20 +11,27 @@ import graph5Image from "../assets/graph-5.png"
 import { NavLink, useParams } from "react-router";
 import { Gender, Gestation, Lot, Status, VaccineEnum } from "~/types/farm"; 
 import type { AnimalDetails } from "~/types/farm"; 
+import EditionDialog from "~/components/edition_dialog";
 
 const FarmAnimal: React.FC = () => {
   const { currentAnimalList } = useFarmContext();
   const { animalId } = useParams();
   const [currentAnimal, setCurrentAnimal] = useState<AnimalDetails | null>(null);
+  const [isEditionDisplayed, setIsEditionDisplayed] = useState(false);
+
   useEffect(() => {
     if (animalId && !isNaN(+animalId)) {
       setCurrentAnimal(currentAnimalList[+animalId - 1])
     }
   }, [currentAnimalList, animalId]);
 
-  console.log(animalId)
   return (
     <div>
+      {
+        isEditionDisplayed && currentAnimal && (
+        <EditionDialog currentAnimal={currentAnimal} closeDialog={() => setIsEditionDisplayed(false)} />
+      )
+      }
       { currentAnimal ? (
         <div className="flex gap-2">
           <div className="border-3 rounded-full h-10 p-2 flex justify-center items-center border-black fixed w-10">     
@@ -178,7 +185,7 @@ const FarmAnimal: React.FC = () => {
                   <h1>SANTE</h1>
                   <div className="horizontal-separator" />
                 </div>
-                <div className="animal-edit">
+                <div className="animal-edit" onClick={() => setIsEditionDisplayed(true)}>
                   <img src={editContrastImage} />
                 </div>
               </div>

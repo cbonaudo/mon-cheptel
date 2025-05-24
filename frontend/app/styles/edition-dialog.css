@@ -1,0 +1,40 @@
+.mask {
+    width: 100vw;
+    height: 100vh;
+    @apply top-0 left-0 absolute z-50;
+    background-color: rgba(224,213,204,0.7);
+
+    @apply flex justify-around p-25 pt-40 pb-48;
+}
+
+.category {
+    @apply border-4 border-secondary font-bold text-gray-dark;
+    @apply bg-contrast-light rounded-4xl p-2 pl-4 pr-4 flex flex-col gap-4;
+}
+
+.close {
+    @apply absolute top-10 right-10 w-20 h-20;
+}
+
+.input-edit {
+    @apply bg-gray-light text-gray-dark font-bold rounded-xl text-sm flex justify-center p-1 pr-2 pl-2;
+    @apply border-3 border-secondary text-center;
+}
+
+.chip-selected-edit {
+  @apply text-neutral-50 font-bold bg-secondary-light rounded-full flex justify-center p-1 pr-4 pl-4;
+}
+.chip-unselected-edit {
+  @apply text-neutral-50 font-bold bg-secondary-xlight rounded-full flex justify-center p-1 pr-4 pl-4;
+}
+
+.alert-echeance {
+  @apply flex bg-contrast rounded-full pl-6 text-neutral-900 font-normal justify-center items-center pr-0;
+}
+.alert-echeance .input {
+  @apply w-20 text-black font-bold ;
+}
+.img-alert {
+  height: 28px;
+  width: 28px;
+}

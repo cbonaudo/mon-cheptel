@@ -8,7 +8,7 @@ const Header: React.FC = () => {
   let pathname = useLocation().pathname;
   const isDashboardSelected = pathname == "/";
   const isAnimalsSelected = pathname.includes("animals");
-  const isAnimalSelected = pathname.endsWith("animal");
+  const isAnimalSelected = pathname.includes("animal/");
 
   return (
     <div>
