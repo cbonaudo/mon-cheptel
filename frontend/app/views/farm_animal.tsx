@@ -8,20 +8,23 @@ import cowImage from "../assets/cow.png"
 import graph3Image from "../assets/graph-3.png"
 import graph4Image from "../assets/graph-4.png"
 import graph5Image from "../assets/graph-5.png"
+import lockImage from "../assets/lock.png"
 import { NavLink, useParams } from "react-router";
 import { Gender, Gestation, Lot, Status, VaccineEnum } from "~/types/farm"; 
 import type { AnimalDetails } from "~/types/farm"; 
 import EditionDialog from "~/components/edition_dialog";
+import ImageDialog from "~/components/image_dialog";
 
 const FarmAnimal: React.FC = () => {
   const { currentAnimalList } = useFarmContext();
   const { animalId } = useParams();
   const [currentAnimal, setCurrentAnimal] = useState<AnimalDetails | null>(null);
   const [isEditionDisplayed, setIsEditionDisplayed] = useState(false);
+  const [imageDisplayed, setImageDisplayed] = useState<null | Number>(null);
 
   useEffect(() => {
     if (animalId && !isNaN(+animalId)) {
-      setCurrentAnimal(currentAnimalList[+animalId - 1])
+      setCurrentAnimal(currentAnimalList[+animalId - 34])
     }
   }, [currentAnimalList, animalId]);
 
@@ -30,6 +33,11 @@ const FarmAnimal: React.FC = () => {
       {
         isEditionDisplayed && currentAnimal && (
         <EditionDialog currentAnimal={currentAnimal} closeDialog={() => setIsEditionDisplayed(false)} />
+      )
+      }
+      {
+        imageDisplayed !== null && currentAnimal && (
+        <ImageDialog imageDisplayed={imageDisplayed} closeDialog={() => setImageDisplayed(null)} />
       )
       }
       { currentAnimal ? (
@@ -212,17 +220,23 @@ const FarmAnimal: React.FC = () => {
               </div>
               <div className="grid grid-cols-[5fr_5fr_6fr] justify-center gap-8 text-sm">
                 <div className="h-50 flex flex-col items-center gap-1">
-                  <img src={graph3Image} className="rounded-xl" />
+                  <img src={graph3Image} className="rounded-xl" onClick={() => setImageDisplayed(3)} />
                   <div className="text-error-light">35,7 kg</div>
                   <div>Moy : 35,2 kg</div>
                 </div>
                 <div className="h-50 flex flex-col items-center gap-1">
-                  <img src={graph4Image} className="rounded-xl" />
+                  <img src={graph4Image} className="rounded-xl" onClick={() => setImageDisplayed(4)} />
                   <div className="text-error-light">Prot : 3,6%  I MG : 4,1%</div>
                   <div>Moy : 3,3% I 3,9%</div>
                 </div>
                 <div className="h-50 flex flex-col items-center gap-1">
-                  <img src={graph5Image} className="rounded-xl" />
+                  <div className="relative">
+                    <img src={graph5Image} className="rounded-xl" />
+                    <div className="subscription-mask">
+                      <img src={lockImage} className="h-20 w-20" />
+                      <div>Souscrivez à Perf'lait + pour accéder à cette fonctionnalité</div>
+                    </div>
+                  </div>
                   <div className="text-error-light">4 refus</div>
                   <div>Moy : 3,5 refus</div>
                 </div>
@@ -258,7 +272,7 @@ const FarmAnimal: React.FC = () => {
             </div>
           </div>
         </div>)
-        : <p>Pas d'animal sélectionné</p>
+        : <p className="text-black font-bold text-2xl ml-130 mt-40">Ceci est une DÉMO. Informations non renseignées.</p>
       }
     </div>
   );

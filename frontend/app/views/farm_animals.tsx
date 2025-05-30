@@ -149,46 +149,46 @@ const FarmAnimals: React.FC = () => {
                 Sexe : 
                 <div 
                   className={genderFilter == 1 ? "chip-selected": "chip-unselected"} 
-                  onClick={() => setGenderFilter(1)}>Femelle</div>
+                  onClick={() => genderFilter == 1 ? setGenderFilter(null) : setGenderFilter(1)}>Femelle</div>
                 <div 
                   className={genderFilter == 0 ? "chip-selected": "chip-unselected"} 
-                  onClick={() => setGenderFilter(0)}>Mâle</div>
+                  onClick={() => genderFilter == 0 ? setGenderFilter(null) : setGenderFilter(0)}>Mâle</div>
               </div>
             </div>
             <div className="flex gap-1">
               Né dans l'élevage : 
               <div className={bornInFilter == true ? "chip-selected": "chip-unselected"} 
-                  onClick={() => setBornInFilter(true)}>Oui</div>
+                  onClick={() => bornInFilter == true ? setBornInFilter(null) : setBornInFilter(true)}>Oui</div>
               <div className={bornInFilter == false ? "chip-selected": "chip-unselected"} 
-                  onClick={() => setBornInFilter(false)}>Non</div>
+                  onClick={() => bornInFilter == false ? setBornInFilter(null) : setBornInFilter(false)}>Non</div>
             </div>
             <div className="flex gap-1">
               Catégorie: 
-              <div onClick={() => setCategoryFilter(0)} 
+              <div onClick={() => categoryFilter == 0 ? setCategoryFilter(null) : setCategoryFilter(0)} 
                 className={categoryFilter == 0 ? "chip-selected": "chip-unselected"}>Veau</div>
-              <div onClick={() => {if (genderFilter != Gender["Mâle"]) {setCategoryFilter(1)}}} 
+              <div onClick={() => {if (genderFilter != Gender["Mâle"]) {categoryFilter == 1 ? setCategoryFilter(null) : setCategoryFilter(1)}}} 
                 className={categoryFilter == 1 ? "chip-selected" : genderFilter != Gender["Mâle"] ? "chip-unselected" : "chip-disabled"}>
                 Génisse</div>
-              <div onClick={() => {if (genderFilter != Gender["Mâle"]) {setCategoryFilter(2)}}} 
+              <div onClick={() => {if (genderFilter != Gender["Mâle"]) {categoryFilter == 2 ? setCategoryFilter(null) : setCategoryFilter(2)}}} 
                 className={categoryFilter == 2 ? "chip-selected" : genderFilter != Gender["Mâle"] ? "chip-unselected" : "chip-disabled"}>
                 Vache</div>
-              <div onClick={() => {if (genderFilter != Gender["Femelle"]) {setCategoryFilter(3)}}} 
+              <div onClick={() => {if (genderFilter != Gender["Femelle"]) {categoryFilter == 3 ? setCategoryFilter(null) : setCategoryFilter(3)}}} 
                 className={categoryFilter == 3 ? "chip-selected" : genderFilter != Gender["Femelle"] ? "chip-unselected" : "chip-disabled"}>
                 Taureau</div>
-              <div onClick={() => {if (genderFilter != Gender["Femelle"]) {setCategoryFilter(4)}}} 
+              <div onClick={() => {if (genderFilter != Gender["Femelle"]) {categoryFilter == 4 ? setCategoryFilter(null) : setCategoryFilter(4)}}} 
                 className={categoryFilter == 4 ? "chip-selected" : genderFilter != Gender["Femelle"] ? "chip-unselected" : "chip-disabled"}>
                 Taurillon</div>
             </div>
             <div className="flex gap-1">
               Lot : 
               <div className={lotFilter == 0 ? "chip-selected": "chip-unselected"} 
-                  onClick={() => setLotFilter(0)}>Lactation</div>
+                  onClick={() => lotFilter == 0 ? setLotFilter(null) : setLotFilter(0)}>Lactation</div>
               <div className={lotFilter == 1 ? "chip-selected": "chip-unselected"} 
-                  onClick={() => setLotFilter(1)}>Prépa Vêlage</div>
+                  onClick={() => lotFilter == 1 ? setLotFilter(null) : setLotFilter(1)}>Prépa Vêlage</div>
               <div className={lotFilter == 2 ? "chip-selected": "chip-unselected"} 
-                  onClick={() => setLotFilter(2)}>Vêlée</div>
+                  onClick={() => lotFilter == 2 ? setLotFilter(null) : setLotFilter(2)}>Vêlée</div>
               <div className={lotFilter == 3 ? "chip-selected": "chip-unselected"} 
-                  onClick={() => setLotFilter(3)}>Tarie</div>
+                  onClick={() => lotFilter == 3 ? setLotFilter(null) : setLotFilter(3)}>Tarie</div>
             </div>
           </div>          
           <div className="button-secondary">Afficher plus <img src={downImage} /></div>
@@ -200,13 +200,13 @@ const FarmAnimals: React.FC = () => {
               Etat de santé : 
               <div
                 className={healthStateFilter == 0 ? "chip-selected": "chip-unselected"} 
-                onClick={() => setHealthStateFilter(0)}>Sain</div>
+                onClick={() => healthStateFilter == 0 ? setHealthStateFilter(null) : setHealthStateFilter(0)}>Sain</div>
               <div
                 className={healthStateFilter == 1 ? "chip-selected": "chip-unselected"} 
-                onClick={() => setHealthStateFilter(1)}>Boiterie</div>
+                onClick={() => healthStateFilter == 1 ? setHealthStateFilter(null) : setHealthStateFilter(1)}>Boiterie</div>
               <div
                 className={healthStateFilter == 2 ? "chip-selected": "chip-unselected"} 
-                onClick={() => setHealthStateFilter(2)}>Ecarté</div>
+                onClick={() => healthStateFilter == 2 ? setHealthStateFilter(null) : setHealthStateFilter(2)}>Ecarté</div>
               <div className="chip-unselected">+</div>
             </div>
             <div className="flex gap-1">
@@ -214,10 +214,10 @@ const FarmAnimals: React.FC = () => {
                 Vaccin : 
                 <div
                   className={vaccineFilter == true ? "chip-selected": "chip-unselected"} 
-                  onClick={() => setVaccineFilter(true)}>A jour</div>
+                  onClick={() => vaccineFilter == true ? setVaccineFilter(null) : setVaccineFilter(true)}>A jour</div>
                 <div
                   className={vaccineFilter == false ? "chip-selected": "chip-unselected"} 
-                  onClick={() => setVaccineFilter(false)}>A faire</div>
+                  onClick={() => vaccineFilter == false ? setVaccineFilter(null) : setVaccineFilter(false)}>A faire</div>
               </div>
               <div className="flex gap-1 items-center">
                 Echéance :
@@ -235,10 +235,10 @@ const FarmAnimals: React.FC = () => {
                 Parage :
                 <div
                   className={parageFilter == true ? "chip-selected": "chip-unselected"} 
-                  onClick={() => setParageFilter(true)}>A jour</div>
+                  onClick={() => parageFilter == true ? setParageFilter(null) : setParageFilter(true)}>A jour</div>
                 <div
                   className={parageFilter == false ? "chip-selected": "chip-unselected"} 
-                  onClick={() => setParageFilter(false)}>A faire</div>
+                  onClick={() => parageFilter == true ? setParageFilter(null) : setParageFilter(false)}>A faire</div>
               </div>
               <div className="flex gap-1 items-center">
                 Echéance :
@@ -262,7 +262,7 @@ const FarmAnimals: React.FC = () => {
       </div>
       <div className="grid grid-cols-2 gap-8">
         {filteredList.map((animal) => (
-          <NavLink to={"/farm/animal/1"} end key={animal.id}>
+          <NavLink to={"/farm/animal/" + animal.id} end key={animal.id}>
             <div className="animal-sheet">
               <div></div>
               <div className="flex flex-col gap-2">
