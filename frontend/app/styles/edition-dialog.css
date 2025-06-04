@@ -39,3 +39,10 @@
   height: 28px;
   width: 28px;
 }
+
+.warning {
+  @apply bg-contrast;
+}
+.gray {
+  @apply bg-gray;
+}

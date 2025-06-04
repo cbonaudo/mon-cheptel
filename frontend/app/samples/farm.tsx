@@ -1,4 +1,4 @@
-import { Appetite, Category, Gender, Gestation, HealthState, Lot, Race, Status, VaccineEnum, type Animal, type AnimalDetails, type DashboardData } from "~/types/farm";
+import { Appetite, Category, Cause, CauseDetail, Gender, Gestation, HealthState, Lot, Race, Status, VaccineEnum, type Animal, type AnimalDetails, type DashboardData } from "~/types/farm";
 
 export const dashboardDataSample: DashboardData = {
     "cattleNumber": 143,
@@ -618,7 +618,7 @@ export const animalListSample: Animal[] = [
     motherPentagNumber: "FR563440",
 }, ];
 
-export const animalDetailsSample: AnimalDetails[] = [{
+export const animalDetailsSample: AnimalDetails = {
     id: "1234",
     name: "SAMSARAH",
     pentagNumber: "FR561603",
@@ -670,6 +670,8 @@ export const animalDetailsSample: AnimalDetails[] = [{
     healthState: HealthState["Sain"],
     nextTreatment: "12/05/2025",
     weight: "127 kg",
+    causeDetail: CauseDetail["A définir"],
+    cause: Cause["Traitement"],
     status: Status["En production"],
     lastParage: "3 semaines",
     vealAmount: 4,
@@ -678,4 +680,4 @@ export const animalDetailsSample: AnimalDetails[] = [{
     vaccine: new Date(),
     parage: new Date(),
     appetite: Appetite["Normal"],
-}];
+};

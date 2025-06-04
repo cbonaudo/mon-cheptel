@@ -1,31 +1,43 @@
 import React, { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
 import { animalDetailsSample, animalListSample, dashboardDataSample } from "~/samples/farm";
-import type { Animal, AnimalDetails, DashboardData } from "~/types/farm";
+import { CauseDetail, type Animal, type AnimalDetails, type DashboardData, type Status } from "~/types/farm";
 
 interface FarmContextType {
   dashboardData: DashboardData | null;
-  currentAnimalList: AnimalDetails[];
+  currentAnimal: AnimalDetails;
   list: Animal[]
-  // addAnimal: (key: keyof AnimalDetails, value: string) => void;
+  setCurrentAnimalStatus: (status: Status) => void;
+  setCurrentAnimalCauseDetail: (causeDetail: CauseDetail) => void;
 }
 
 const defaultFarmContext: FarmContextType = {
-  currentAnimalList: [],
+  currentAnimal: animalDetailsSample,
   dashboardData: null,
   list: [],
-  // addAnimal: () => {},
+  setCurrentAnimalStatus: (status) => {},
+  setCurrentAnimalCauseDetail: (causeDetail) => {},
 };
 
 const FarmContext = createContext<FarmContextType>(defaultFarmContext);
 
 export function FarmProvider ({ children }: { children: ReactNode })  {
   const [list, setList] = useState<Animal[]>(animalListSample);
-  const [currentAnimalList, setCurrentAnimalList] = useState<AnimalDetails[]>(animalDetailsSample);
+  const [currentAnimal, setCurrentAnimal] = useState<AnimalDetails>(animalDetailsSample);
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(dashboardDataSample);
 
+  const setCurrentAnimalStatus = (status: Status) => {
+    currentAnimal.status = status;
+    setCurrentAnimal({...currentAnimal});
+  }
+
+  const setCurrentAnimalCauseDetail = (causeDetail: CauseDetail) => {
+    currentAnimal.causeDetail = causeDetail;
+    setCurrentAnimal({...currentAnimal});
+  }
+
   return (
-    <FarmContext.Provider value={{ currentAnimalList, list, dashboardData }}>
+    <FarmContext.Provider value={{ currentAnimal, list, dashboardData, setCurrentAnimalStatus, setCurrentAnimalCauseDetail }}>
       {children}
     </FarmContext.Provider>
   );

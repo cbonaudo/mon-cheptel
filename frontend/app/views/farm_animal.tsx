@@ -16,23 +16,23 @@ import EditionDialog from "~/components/edition_dialog";
 import ImageDialog from "~/components/image_dialog";
 
 const FarmAnimal: React.FC = () => {
-  const { currentAnimalList } = useFarmContext();
+  const { currentAnimal: storeCurrentAnimal } = useFarmContext();
   const { animalId } = useParams();
   const [currentAnimal, setCurrentAnimal] = useState<AnimalDetails | null>(null);
   const [isEditionDisplayed, setIsEditionDisplayed] = useState(true);
   const [imageDisplayed, setImageDisplayed] = useState<null | Number>(null);
 
   useEffect(() => {
-    if (animalId && !isNaN(+animalId)) {
-      setCurrentAnimal(currentAnimalList[+animalId - 34])
+    if (animalId == "34") {
+      setCurrentAnimal(storeCurrentAnimal)
     }
-  }, [currentAnimalList, animalId]);
+  }, [storeCurrentAnimal, animalId]);
 
   return (
     <div>
       {
         isEditionDisplayed && currentAnimal && (
-        <EditionDialog currentAnimal={currentAnimal} closeDialog={() => setIsEditionDisplayed(false)} />
+        <EditionDialog closeDialog={() => setIsEditionDisplayed(false)} />
       )
       }
       {
@@ -202,7 +202,11 @@ const FarmAnimal: React.FC = () => {
                 <div className="flex gap-2 items-center">Vaccins :<button className="animal-chip">{VaccineEnum[currentAnimal.vaccines]}</button></div>
                 <div className="flex gap-2 items-center">Prochains traitements :<span className="animal-chip">{currentAnimal.nextTreatment}</span></div>
                 <div></div>
-                <div className="flex gap-2 items-center">Statut :<button className="animal-chip">{Status[currentAnimal.status]}</button></div>
+                <div className="flex gap-2 items-center">Statut :
+                  <button className={currentAnimal.status == Status["Lait à écarter"] ? "animal-chip warning" : currentAnimal.status == Status["Hors production"] ? "animal-chip gray" : "animal-chip"}>
+                    {Status[currentAnimal.status]}
+                  </button>
+                </div>
                 <div className="flex gap-2 items-center">Poids :<span className="animal-chip">{currentAnimal.weight}</span></div>
                 <div className="flex gap-2 items-center">Dernier parage :<span className="animal-chip">{currentAnimal.lastParage}</span></div>
               </div>

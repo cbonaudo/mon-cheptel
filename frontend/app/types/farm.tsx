@@ -68,6 +68,14 @@ export enum Cause {
   "Tarie"
 }
 
+export enum CauseDetail {
+  "A définir",
+  "Mammite",
+  "Mastite",
+  "Cétose",
+  "Lait Non conforme"
+}
+
 export type AnimalDetails = {
   id: string,
   name: string,
@@ -116,6 +124,7 @@ export type AnimalDetails = {
       mother: string
   },
   reproduction: Gestation,
+  causeDetail: CauseDetail,
   vaccines: VaccineEnum,
   nextTreatment: string,
   weight: string,
