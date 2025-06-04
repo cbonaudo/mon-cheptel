@@ -61,6 +61,13 @@ export enum Appetite {
   "Absent"
 }
 
+export enum Cause {
+  "Traitement",
+  "Colostrum",
+  "Qualité",
+  "Tarie"
+}
+
 export type AnimalDetails = {
   id: string,
   name: string,
@@ -121,6 +128,7 @@ export type AnimalDetails = {
   vealAmount: number,
   detectorInstalled: boolean,
   IAAttempts: number,
+  cause: Cause,
 };
 
 export type Animal = {

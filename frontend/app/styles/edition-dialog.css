@@ -4,12 +4,13 @@
     @apply top-0 left-0 absolute z-50;
     background-color: rgba(224,213,204,0.7);
 
-    @apply flex justify-around p-25 pt-40 pb-48;
+    @apply flex justify-around p-20 pt-30 pb-35;
 }
 
 .category {
     @apply border-4 border-secondary font-bold text-gray-dark;
     @apply bg-contrast-light rounded-4xl p-2 pl-4 pr-4 flex flex-col gap-4;
+    overflow: auto;
 }
 
 .close {

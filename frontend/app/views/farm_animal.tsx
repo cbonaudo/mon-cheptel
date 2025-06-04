@@ -19,7 +19,7 @@ const FarmAnimal: React.FC = () => {
   const { currentAnimalList } = useFarmContext();
   const { animalId } = useParams();
   const [currentAnimal, setCurrentAnimal] = useState<AnimalDetails | null>(null);
-  const [isEditionDisplayed, setIsEditionDisplayed] = useState(false);
+  const [isEditionDisplayed, setIsEditionDisplayed] = useState(true);
   const [imageDisplayed, setImageDisplayed] = useState<null | Number>(null);
 
   useEffect(() => {
