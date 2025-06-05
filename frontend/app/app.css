@@ -44,6 +44,8 @@ body {
   --color-error-light: oklch(0.6846 0.2042 24.28);
   --color-error-dark: oklch(0.29 0.1158 28.73);
   --color-good: oklch(0.62 0.1274 154.95);
+
+  --color-beige: oklch(0.6874 0.0757 68.05);
 }
 
 h1, h2 {

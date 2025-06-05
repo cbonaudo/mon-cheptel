@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
 import { animalDetailsSample, animalListSample, dashboardDataSample } from "~/samples/farm";
-import { CauseDetail, type Animal, type AnimalDetails, type DashboardData, type Status } from "~/types/farm";
+import { Cause, CauseDetail, type Animal, type AnimalDetails, type DashboardData, type Status } from "~/types/farm";
 
 interface FarmContextType {
   dashboardData: DashboardData | null;
@@ -9,6 +9,7 @@ interface FarmContextType {
   list: Animal[]
   setCurrentAnimalStatus: (status: Status) => void;
   setCurrentAnimalCauseDetail: (causeDetail: CauseDetail) => void;
+  setCurrentAnimalCause: (cause: Cause) => void;
 }
 
 const defaultFarmContext: FarmContextType = {
@@ -17,6 +18,7 @@ const defaultFarmContext: FarmContextType = {
   list: [],
   setCurrentAnimalStatus: (status) => {},
   setCurrentAnimalCauseDetail: (causeDetail) => {},
+  setCurrentAnimalCause: (cause) => {}
 };
 
 const FarmContext = createContext<FarmContextType>(defaultFarmContext);
@@ -36,8 +38,13 @@ export function FarmProvider ({ children }: { children: ReactNode })  {
     setCurrentAnimal({...currentAnimal});
   }
 
+  const setCurrentAnimalCause = (cause: Cause) => {
+    currentAnimal.cause = cause;
+    setCurrentAnimal({...currentAnimal});
+  }
+
   return (
-    <FarmContext.Provider value={{ currentAnimal, list, dashboardData, setCurrentAnimalStatus, setCurrentAnimalCauseDetail }}>
+    <FarmContext.Provider value={{ currentAnimal, list, dashboardData, setCurrentAnimalStatus, setCurrentAnimalCauseDetail, setCurrentAnimalCause }}>
       {children}
     </FarmContext.Provider>
   );

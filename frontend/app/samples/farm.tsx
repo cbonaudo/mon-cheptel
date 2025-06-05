@@ -671,7 +671,7 @@ export const animalDetailsSample: AnimalDetails = {
     nextTreatment: "12/05/2025",
     weight: "127 kg",
     causeDetail: CauseDetail["A définir"],
-    cause: Cause["Traitement"],
+    cause: Cause["Tarie"],
     status: Status["En production"],
     lastParage: "3 semaines",
     vealAmount: 4,

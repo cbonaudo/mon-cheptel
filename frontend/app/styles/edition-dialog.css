@@ -11,6 +11,7 @@
     @apply border-4 border-secondary font-bold text-gray-dark;
     @apply bg-contrast-light rounded-4xl p-2 pl-4 pr-4 flex flex-col gap-4;
     overflow: auto;
+    @apply text-xl
 }
 
 .close {
@@ -21,6 +22,25 @@
     @apply bg-gray-light text-gray-dark font-bold rounded-xl text-sm flex justify-center p-1 pr-2 pl-2;
     @apply border-3 border-secondary text-center;
 }
+.input-edit.dialog {
+  @apply text-xl font-bold text-black w-40 h-10;
+}
+.input-edit.dialog.small {
+  @apply w-36;
+}
+.input-edit.dialog.large {
+  @apply w-50;
+}
+.input-edit.dialog.cal {
+  @apply w-46 pl-0 pr-6;
+}
+.input-edit.dialog.search {
+  @apply w-128 h-14 pl-0 pr-6;
+}
+
+.calendar {
+  @apply -ml-10 mt-1 w-8 h-8;
+}
 
 .chip-selected-edit {
   @apply text-neutral-50 font-bold bg-secondary-light rounded-full flex justify-center p-1 pr-4 pl-4;
@@ -28,12 +48,18 @@
 .chip-unselected-edit {
   @apply text-neutral-50 font-bold bg-secondary-xlight rounded-full flex justify-center p-1 pr-4 pl-4;
 }
+.chip-grayed-edit {
+  @apply text-neutral-50 font-bold bg-gray rounded-full flex justify-center p-1 pr-4 pl-4;
+}
 
 .alert-echeance {
-  @apply flex bg-contrast rounded-full pl-6 text-neutral-900 font-normal justify-center items-center pr-0;
+  @apply bg-beige flex rounded-full pl-6 text-neutral-900 font-normal justify-center items-center pr-0 h-10;
+}
+.alert-echeance.big {
+  @apply w-130;
 }
 .alert-echeance .input {
-  @apply w-20 text-black font-bold ;
+  @apply w-20 text-black font-bold h-9 flex justify-center items-center text-base;
 }
 .img-alert {
   height: 28px;
@@ -45,4 +71,23 @@
 }
 .gray {
   @apply bg-gray;
+}
+
+.horizontal-separator-black {
+  @apply bg-secondary-light h-0.5 w-200 mt-4 mb-4;
+}
+
+.statut div {
+  @apply h-20 flex justify-center items-center text-center;
+}
+
+.input.cause {
+  @apply border-secondary border-2 rounded-md text-sm;
+}
+
+.animal-chip.big {
+  @apply w-28 flex justify-center;
+}
+.animal-chip.gds {
+  @apply w-33 flex justify-center;
 }
