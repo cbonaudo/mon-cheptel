@@ -4,7 +4,7 @@
     @apply top-0 left-0 absolute z-50;
     background-color: rgba(224,213,204,0.7);
 
-    @apply flex justify-around p-20 pt-30 pb-35;
+    @apply flex justify-around p-10 pt-16 pb-20;
 }
 
 .category {
@@ -15,7 +15,7 @@
 }
 
 .close {
-    @apply absolute top-10 right-10 w-20 h-20;
+    @apply absolute top-0 right-0 w-20 h-20;
 }
 
 .input-edit {

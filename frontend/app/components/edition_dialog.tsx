@@ -8,10 +8,6 @@ import downGrayImage from "../assets/downgray.png"
 import { Appetite, Cause, CauseDetail, HealthState, Status, type AnimalDetails } from "~/types/farm"; 
 import { useFarmContext } from "~/contexts/farm";
 
-// TODO: all values in the currentAnimal
-// TODO: call updateAnimal on clicking buttons (for now état de santé) seulement
-// TODO: finish visual
-// TODO: add animals details
 const EditionDialog = ({ closeDialog }: { closeDialog: () => void }) => {
     const { currentAnimal, setCurrentAnimalStatus, setCurrentAnimalCauseDetail, setCurrentAnimalCause } = useFarmContext();
 
