@@ -224,18 +224,18 @@ const FarmAnimal: React.FC = () => {
               </div>
               <div className="grid grid-cols-[5fr_5fr_6fr] justify-center gap-8 text-sm">
                 <div className="h-50 flex flex-col items-center gap-1">
-                  <img src={graph3Image} className="rounded-xl" onClick={() => setImageDisplayed(3)} />
+                  <img src={graph3Image} className="rounded-xl graph" onClick={() => setImageDisplayed(3)} />
                   <div className="text-error-light">35,7 kg</div>
                   <div>Moy : 35,2 kg</div>
                 </div>
                 <div className="h-50 flex flex-col items-center gap-1">
-                  <img src={graph4Image} className="rounded-xl" onClick={() => setImageDisplayed(4)} />
+                  <img src={graph4Image} className="rounded-xl graph" onClick={() => setImageDisplayed(4)} />
                   <div className="text-error-light">Prot : 3,6%  I MG : 4,1%</div>
                   <div>Moy : 3,3% I 3,9%</div>
                 </div>
                 <div className="h-50 flex flex-col items-center gap-1">
                   <div className="relative">
-                    <img src={graph5Image} className="rounded-xl" />
+                    <img src={graph5Image} className="rounded-xl graph" />
                     <div className="subscription-mask">
                       <img src={lockImage} className="h-20 w-20" />
                       <div>Souscrivez à Perf'lait + pour accéder à cette fonctionnalité</div>
